@@ -47,7 +47,8 @@ function frmLogin(e){
                 const res = JSON.parse(this.responseText);
                 // Si la respuesta es 'Ok' se reedirecciona
                 if (res == "Ok"){
-                    window.location = base_url + "Usuarios";
+                    //Se reedirecciona al método home del controlador Administración
+                    window.location = base_url + "Administracion/home";
                 }else{
                     //Se muestra el mensaje de alerta al ingresar un usuario/contraseña incorrectos
                     document.getElementById("alerta").classList.remove('d-none');

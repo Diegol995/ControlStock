@@ -15,6 +15,13 @@
             $this->views->getView($this, "index", $data);
         }
 
+        public function home(){
+            $data['usuarios'] = $this->model->getDatos('usuarios');
+            $data['clientes'] = $this->model->getDatos('clientes');
+            $data['productos'] = $this->model->getDatos('productos');
+            $this->views->getView($this, "home", $data);
+        }
+
         public function modificar(){
             $nombre = $_POST['nombre'];
             $cuit_cuil = $_POST['cuit_cuil'];
