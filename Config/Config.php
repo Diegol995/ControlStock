@@ -6,4 +6,5 @@
     const pass = "";
     const db = "Control_Stock";
     const charset = "charset=utf8";
+    //ésto es una prueba
 ?>
