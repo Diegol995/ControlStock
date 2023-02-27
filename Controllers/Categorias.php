@@ -38,28 +38,28 @@
             $id = $_POST['id'];
             if ($id == ""){
                 if (empty($nombre)){
-                    $msg = '¡El campo es obligatorio!';
+                    $msg = array('msg' => '¡El campo es obligatorio!', 'icono' => 'warning');
                 }else{
                     $data = $this->model->registrarCategoria($nombre);
                     if ($data == 'Ok'){
-                        $msg = 'Si';
+                        $msg = array('msg' => '¡Categoría Registrada!', 'icono' => 'success');
                     }else if ($data == 'existe'){
-                         $msg = '¡Ya se encuentra registrada una categoría con ese nombre!';
+                        $msg = array('msg' => '¡Ya se encuentra registrada una categoría con ese nombre!', 'icono' => 'warning');
                     }else{
-                        $msg = "¡Error al registrar la categoría!";
+                        $msg = array('msg' => '¡Error al registrar la categoría!', 'icono' => 'error');
                     }
                 }
             }else{
                 if (empty($nombre)){
-                    $msg = '¡El campo es obligatorio!';
+                    $msg = array('msg' => '¡El campo es obligatorio!', 'icono' => 'warning');
                 }else{
                     $data = $this->model->modificarCategoria($nombre,$id);
                     if ($data == 'modificado'){
-                        $msg = 'modificado';
+                        $msg = array('msg' => '¡Datos Modificados!', 'icono' => 'success');
                     }else if ($data == 'existe'){
-                        $msg = "¡Ya se encuentra registrada una categoría con ese Nombre!";
+                        $msg = array('msg' => '¡Ya se encuentra registrada una categoría con ese nombre!', 'icono' => 'warning');
                     }else{
-                        $msg = "¡Error al registrar la categoría!";
+                        $msg = array('msg' => '¡Error al modificar los datos!', 'icono' => 'error');
                     }
                 }
             }
@@ -76,9 +76,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionCat(0, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Categoría Eliminada!', 'icono' => 'success');
             }else{
-                $msg = "Error al eliminar la categoría";
+                $msg = array('msg' => '¡Error al eliminar la categoría!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -87,9 +87,9 @@
         public function restaurar(int $id){
             $data = $this->model->accionCat(1, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Categoría Restaurada!', 'icono' => 'success');
             }else{
-                $msg = "Error al restaurar la categoría";
+                $msg = array('msg' => '¡Error al restaurar la categoría!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

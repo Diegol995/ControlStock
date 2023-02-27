@@ -49,7 +49,7 @@
         //Valida los vampos vacíos del Login
         public function validar(){
             //Se valída que que los campos no estén vacíos
-        if (empty($_POST['usuario']) || empty($_POST['clave'])){
+            if (empty($_POST['usuario']) || empty($_POST['clave'])){
                 $msg = "Los campos están vacíos";
             }else{
                 //Si los campos no están vacíos, se almacenan sus valores en variables
@@ -92,32 +92,32 @@
             //de lo contrario se está modificando uno ya existente
             if ($id == ""){
                 if (empty($usuario) || empty($nombre) || empty($clave) || empty($caja)){
-                    $msg = '¡Todos los campos son obligatorios!';
+                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
                     if ($clave != $confirmar){
-                        $msg = "¡Las contraseñas deben coincidir!";
+                        $msg = array('msg' => '¡Las contraseñas deben coincidir!', 'icono' => 'warning');
                     }else{
                         $data = $this->model->registrarUsuario($usuario,$nombre,$hash,$caja);
                         if ($data == 'Ok'){
-                            $msg = 'Si';
+                            $msg = array('msg' => '¡Usuario registrado con éxito!', 'icono' => 'success');
                         }else if ($data == 'existe'){
-                             $msg = '¡El usuario que desea registrar ya existe!';
+                            $msg = array('msg' => '¡El usuario que desea registrar ya existe!', 'icono' => 'error');
                         }else{
-                            $msg = "¡Error al registrar el usuario!";
+                            $msg = array('msg' => '¡Error al registrar el usuario!', 'icono' => 'error');
                         }
                     }
                 }
             }else{
                 if (empty($usuario) || empty($nombre) || empty($caja)){
-                    $msg = '¡Todos los campos son obligatorios!';
+                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
                     $data = $this->model->modificarUsuario($usuario,$nombre,$caja,$id);
                     if ($data == 'modificado'){
-                        $msg = 'modificado';
+                        $msg = array('msg' => '¡Usuario modificado con éxito!', 'icono' => 'success');
                     }else if ($data == 'existe'){
-                        $msg = "¡Ya existe ese usuario!";
+                        $msg = array('msg' => '¡Ya existe ese usuario!', 'icono' => 'error');
                     }else{
-                        $msg = "¡Error al registrar el usuario!";
+                        $msg = array('msg' => '¡Error al registrar el usuario!', 'icono' => 'error');
                     }
                 }
             }
@@ -134,9 +134,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionUser(0, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Usuario Eliminado!', 'icono' => 'success');
             }else{
-                $msg = "Error al eliminar el usuario";
+                $msg = array('msg' => '¡Error al eliminar el usuario!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -145,9 +145,38 @@
         public function restaurar(int $id){
             $data = $this->model->accionUser(1, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Usuario Restaurado!', 'icono' => 'success');
             }else{
-                $msg = "Error al restaurar el usuario";
+                $msg = array('msg' => '¡Error al restaurar el usuario!', 'icono' => 'error');
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+        public function cambiarPass(){
+            $actual = $_POST['clave_actual'];
+            $nueva = $_POST['clave_nueva'];
+            $confirm = $_POST['confirmar_clave'];
+            if (empty($actual) || empty($nueva) || empty($confirm)){
+                $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
+            }else{
+                if ($nueva != $confirm){
+                    $msg = array('msg' => '¡Las contraseñas deben coincidir!', 'icono' => 'warning');
+                }else{
+                    $id = $_SESSION['id_usuario'];
+                    $hash = hash('SHA256', $actual);
+                    $data = $this->model->getPass($hash, $id);
+                    if (!empty($data)){
+                        $verificar = $this->model->modificarPass(hash('SHA256', $nueva), $id);
+                        if ($verificar == 1){
+                            $msg = array('msg' => '¡Constraseña Modificada!', 'icono' => 'success');
+                        }else{
+                            $msg = array('msg' => '¡Error al modificar la contraseña!', 'icono' => 'error');
+                        }
+                    }else{
+                        $msg = array('msg' => '¡La contraseña actual es incorrecta!', 'icono' => 'error');
+                    }
+                }
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

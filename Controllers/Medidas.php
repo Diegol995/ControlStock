@@ -39,28 +39,28 @@
             $id = $_POST['id'];
             if ($id == ""){
                 if (empty($nombre) || empty($nombre_corto)){
-                    $msg = '¡Todos los campos son obligatorios!';
+                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
                     $data = $this->model->registrarMedida($nombre,$nombre_corto);
                     if ($data == 'Ok'){
-                        $msg = 'Si';
+                        $msg = array('msg' => '¡Medida Registrada!', 'icono' => 'success');
                     }else if ($data == 'existe'){
-                         $msg = '¡Ya se encuentra registrada una medida con ese nombre!';
+                        $msg = array('msg' => '¡Ya se encuentra registrada una medida con ese nombre!', 'icono' => 'warning');
                     }else{
-                        $msg = "¡Error al registrar la medida!";
+                        $msg = array('msg' => '¡Error al registrar la medida!', 'icono' => 'error');
                     }
                 }
             }else{
                 if (empty($nombre) || empty($nombre_corto)){
-                    $msg = '¡Todos los campos son obligatorios!';
+                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
                     $data = $this->model->modificarMedida($nombre,$nombre_corto,$id);
                     if ($data == 'modificado'){
-                        $msg = 'modificado';
+                        $msg = array('msg' => '¡Datos Modificados!', 'icono' => 'success');
                     }else if ($data == 'existe'){
-                        $msg = "¡Ya se encuentra registrada una medida con ese Nombre!";
+                        $msg = array('msg' => '¡Ya se encuentra registrada una medida con ese nombre!', 'icono' => 'warning');
                     }else{
-                        $msg = "¡Error al registrar la medida!";
+                        $msg = array('msg' => '¡Error al modificar los datos!', 'icono' => 'error');
                     }
                 }
             }
@@ -77,9 +77,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionMed(0, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Medida Eliminada!', 'icono' => 'success');
             }else{
-                $msg = "Error al eliminar la medida";
+                $msg = array('msg' => '¡Error al eliminar la medida!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -88,9 +88,9 @@
         public function restaurar(int $id){
             $data = $this->model->accionMed(1, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Medida Restaurada!', 'icono' => 'success');
             }else{
-                $msg = "Error al restaurar la medida";
+                $msg = array('msg' => '¡Error al restaurar la medida!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

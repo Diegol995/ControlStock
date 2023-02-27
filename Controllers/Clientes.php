@@ -8,6 +8,7 @@
             }
             parent::__construct();
         }
+        
         public function index(){
             $this->views->getView($this, "index");
         }
@@ -40,28 +41,28 @@
             $id = $_POST['id'];
             if ($id == ""){
                 if (empty($cuit_cuil) || empty($nombre) || empty($telefono) || empty($direccion)){
-                    $msg = '¡Todos los campos son obligatorios!';
+                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
                     $data = $this->model->registrarCliente($cuit_cuil,$nombre,$telefono,$direccion);
                     if ($data == 'Ok'){
-                        $msg = 'Si';
+                        $msg = array('msg' => '¡Cliente Registrado!', 'icono' => 'success');
                     }else if ($data == 'existe'){
-                         $msg = '¡Ya se encuentra registrado un cliente con ese Cuit/Cuil!';
+                        $msg = array('msg' => '¡Ya se encuentra registrado un cliente con ese Cuit/Cuil!', 'icono' => 'warning');
                     }else{
-                        $msg = "¡Error al registrar el cliente!";
+                        $msg = array('msg' => '¡Error al registrar el cliente!', 'icono' => 'error');
                     }
                 }
             }else{
                 if (empty($cuit_cuil) || empty($nombre) || empty($telefono) || empty($direccion)){
-                    $msg = '¡Todos los campos son obligatorios!';
+                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
                     $data = $this->model->modificarCliente($cuit_cuil,$nombre,$telefono,$direccion,$id);
                     if ($data == 'modificado'){
-                        $msg = 'modificado';
+                        $msg = array('msg' => '¡Datos Modificados!', 'icono' => 'success');
                     }else if ($data == 'existe'){
-                        $msg = "¡Ya se encuentra registrado un cliente con ese Cuit/Cuil!";
+                        $msg = array('msg' => '¡Ya se encuentra registrado un cliente con ese Cuit/Cuil!', 'icono' => 'warning');
                     }else{
-                        $msg = "¡Error al registrar el cliente!";
+                        $msg = array('msg' => '¡Error al registrar el cliente!', 'icono' => 'error');
                     }
                 }
             }
@@ -78,9 +79,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionCli(0, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Cliente Eliminado!', 'icono' => 'success');
             }else{
-                $msg = "Error al eliminar el usuario";
+                $msg = array('msg' => '¡Error al eliminar el cliente!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -89,9 +90,9 @@
         public function restaurar(int $id){
             $data = $this->model->accionCli(1, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Cliente Restaurado!', 'icono' => 'success');
             }else{
-                $msg = "Error al restaurar el cliente";
+                $msg = array('msg' => '¡Error al restaurar el cliente!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

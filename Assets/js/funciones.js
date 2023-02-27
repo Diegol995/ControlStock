@@ -1,6 +1,7 @@
 let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos;
 //Si el contenido del DOM se cargó, se ejecuta la función
 document.addEventListener('DOMContentLoaded', function(){
+    $('#cliente').select2();
     //Se accede al tblUsuarios de la vista Usuarios/index.php
     tblUsuarios = $('#tblUsuarios').DataTable( {
         ajax: {
@@ -27,6 +28,66 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 'data' : 'acciones'
             }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
         ]
     } );
 
@@ -59,6 +120,66 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 'data' : 'acciones'
             }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
         ]
     } );
 
@@ -85,6 +206,66 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 'data' : 'acciones'
             }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
         ]
     } );
 
@@ -108,6 +289,66 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 'data' : 'acciones'
             }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
         ]
     } );
 
@@ -131,6 +372,66 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 'data' : 'acciones'
             }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
         ]
     } );
 
@@ -166,9 +467,273 @@ document.addEventListener('DOMContentLoaded', function(){
             {
                 'data' : 'acciones'
             }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
+        ]
+    } );
+
+    //FIN DE LA TABLA PRODUCTOS
+
+    $('#t_historial_c').DataTable( {
+        ajax: {
+            url: base_url + "Compras/listar_historial",
+            dataSrc: ''
+        },
+        columns: [
+            {
+                'data' : 'id'
+            },
+            {
+                'data' : 'nombre'
+            },
+            {
+                'data' : 'total'
+            },
+            {
+                'data' : 'fecha'
+            },
+            {
+                'data' : 'acciones'
+            }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
+        ]
+    } );
+
+    //FIN DE LA TABAL HISTORIAL COMPRAS
+
+    $('#t_historial_v').DataTable( {
+        ajax: {
+            url: base_url + "Compras/listar_historialVentas",
+            dataSrc: ''
+        },
+        columns: [
+            {
+                'data' : 'id'
+            },
+            {
+                'data' : 'userName'
+            },
+            {
+                'data' : 'clientName'
+            },
+            {
+                'data' : 'total'
+            },
+            {
+                'data' : 'fecha'
+            },
+            {
+                'data' : 'acciones'
+            }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
         ]
     } );
 })
+
+function frmCambiarPass(e){
+    e.preventDefault();
+    const actual = document.getElementById('clave_actual').value;
+    const nueva = document.getElementById('clave_nueva').value;
+    const confirm = document.getElementById('confirmar_clave').value;
+    if (actual == '' || nueva == '' || confirm == ''){
+        alertas('¡Todos los campos son obligatorios!', 'warning');
+    }else{
+        const url = base_url + "Usuarios/cambiarPass";
+        const frm = document.getElementById("frmCambiarPass");
+        const http = new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                const res = JSON.parse(this.responseText);
+                if (res.icono != 'success'){
+                    alertas(res.msg, res.icono);
+                }
+                else{
+                    alertas(res.msg, res.icono);
+                    $('#cambiarPass').modal('hide');
+                    frm.reset();
+                }
+            }
+        }
+    }
+}
 
 function frmUsuario(){
     //Se resetea el formulario para que no queden los campos con datos de la última edición
@@ -192,13 +757,7 @@ function registrarUser(e){
     if (usuario.value == "" || nombre.value == "" || caja.value == "")
     {
         //Se utiliza el sweetalert2 para mostrar un mensaje de alerta
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: '¡Todos los campos son obligatorios!',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas("¡Todos los campos son obligatorios!", 'warning');
     }else
     {
         //Si los datos ingresados pasan las validaciones, se envian al método registrar
@@ -210,14 +769,11 @@ function registrarUser(e){
         http.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if (res == 'Si'){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Usuario registrado con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
+                if (res.icono != 'success'){
+                    alertas(res.msg, res.icono);
+                }
+                else{
+                    alertas(res.msg, res.icono);
                     //Se resetea el formulario para limpiar sus campos
                     frm.reset();
                     //Se oculta
@@ -225,26 +781,6 @@ function registrarUser(e){
                     //Se recarga el datatable para mostrar los datos ingresados/modificados
                     //sin recargar la página
                     tblUsuarios.ajax.reload();
-                }else if (res == "modificado"){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Usuario modificado con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $('#nuevo_usuario').modal('hide');
-                    tblUsuarios.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        //el valor de res, es el que proviene de el método registrar del controlador
-                        //Usuarios
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
                 }
             }
         }
@@ -296,20 +832,8 @@ function btnEliminarUser(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Usuario Eliminado!',
-                          'Este usuario se eliminó correctamente.',
-                          'success'
-                        )
-                        tblUsuarios.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblUsuarios.ajax.reload();
                 }
             }
         }
@@ -334,20 +858,8 @@ function btnRestaurarUser(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Usuario Restaurado!',
-                          'Este usuario se restauró correctamente.',
-                          'success'
-                        )
-                        tblUsuarios.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblUsuarios.ajax.reload();
                 }
             }
         }
@@ -381,13 +893,7 @@ function registrarCli(e){
     const direccion = document.getElementById("direccion");
     if (cuit_cuil.value == "" || nombre.value == "" || telefono.value == "" || direccion.value == "")
     {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: '¡Todos los campos son obligatorios!',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('¡Todos los campos son obligatorios!', 'warning');
     }else
     {
         const url = base_url + "Clientes/registrar";
@@ -398,35 +904,14 @@ function registrarCli(e){
         http.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if (res == 'Si'){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Cliente registrado con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
+                if (res.icono != 'success'){
+                    alertas(res.msg, res.icono);
+                }
+                else{
+                    alertas(res.msg, res.icono);
                     frm.reset();
                     $('#nuevo_cliente').modal('hide');
                     tblClientes.ajax.reload();
-                }else if (res == "modificado"){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Cliente modificado con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $('#nuevo_cliente').modal('hide');
-                    tblClientes.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
                 }
             }
         }
@@ -472,20 +957,8 @@ function btnEliminarCli(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Cliente Eliminado!',
-                          'Este cliente se eliminó correctamente.',
-                          'success'
-                        )
-                        tblClientes.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblClientes.ajax.reload();
                 }
             }
         }
@@ -510,20 +983,8 @@ function btnRestaurarCli(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Cliente Restaurado!',
-                          'Este cliente se restauró correctamente.',
-                          'success'
-                        )
-                        tblClientes.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblClientes.ajax.reload();
                 }
             }
         }
@@ -546,13 +1007,7 @@ function registrarMed(e){
     const nombre_corto = document.getElementById("nombre_corto");
     if (nombre.value == "" || nombre_corto.value == "")
     {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: '¡Todos los campos son obligatorios!',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('¡Todos los campos son obligatorios!', 'warning');
     }else
     {
         const url = base_url + "Medidas/registrar";
@@ -563,35 +1018,14 @@ function registrarMed(e){
         http.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if (res == 'Si'){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Medida registrada con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
+                if (res.icono != 'success'){
+                    alertas(res.msg, res.icono);
+                }
+                else{
+                    alertas(res.msg, res.icono);
                     frm.reset();
                     $('#nueva_medida').modal('hide');
                     tblMedidas.ajax.reload();
-                }else if (res == "modificado"){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Medida modificada con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $('#nueva_medida').modal('hide');
-                    tblMedidas.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
                 }
             }
         }
@@ -635,20 +1069,8 @@ function btnEliminarMed(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Medida Eliminada!',
-                          'Esta medida se eliminó correctamente.',
-                          'success'
-                        )
-                        tblMedidas.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblMedidas.ajax.reload();
                 }
             }
         }
@@ -673,20 +1095,8 @@ function btnRestaurarMed(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Medida Restaurada!',
-                          'Esta medida se restauró correctamente.',
-                          'success'
-                        )
-                        tblMedidas.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblMedidas.ajax.reload();
                 }
             }
         }
@@ -708,13 +1118,7 @@ function registrarCat(e){
     const nombre = document.getElementById("nombre");
     if (nombre.value == "")
     {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: '¡El campo es obligatorio!',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('¡El campo es obligatorio!', 'warning');
     }else
     {
         const url = base_url + "Categorias/registrar";
@@ -725,35 +1129,14 @@ function registrarCat(e){
         http.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if (res == 'Si'){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Categoría registrada con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
+                if (res.icono != 'success'){
+                    alertas(res.msg, res.icono);
+                }
+                else{
+                    alertas(res.msg, res.icono);
                     frm.reset();
                     $('#nueva_categoria').modal('hide');
                     tblCategorias.ajax.reload();
-                }else if (res == "modificado"){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Categoría modificada con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $('#nueva_categoria').modal('hide');
-                    tblCategorias.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
                 }
             }
         }
@@ -796,20 +1179,8 @@ function btnEliminarCat(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Categoria Eliminada!',
-                          'Esta categoría se eliminó correctamente.',
-                          'success'
-                        )
-                        tblCategorias.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblCategorias.ajax.reload();
                 }
             }
         }
@@ -834,20 +1205,8 @@ function btnRestaurarCat(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Categoría Restaurada!',
-                          'Esta categoría se restauró correctamente.',
-                          'success'
-                        )
-                        tblCategorias.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblCategorias.ajax.reload();
                 }
             }
         }
@@ -869,13 +1228,7 @@ function registrarCaja(e){
     const caja = document.getElementById("caja");
     if (caja.value == "")
     {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: '¡El campo es obligatorio!',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('¡El campo es obligatorio!', 'warning');
     }else
     {
         const url = base_url + "Cajas/registrar";
@@ -886,35 +1239,14 @@ function registrarCaja(e){
         http.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if (res == 'Si'){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Caja registrada con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
+                if (res.icono != 'success'){
+                    alertas(res.msg, res.icono);
+                }
+                else{
+                    alertas(res.msg, res.icono);
                     frm.reset();
                     $('#nueva_caja').modal('hide');
                     tblCajas.ajax.reload();
-                }else if (res == "modificado"){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Caja modificada con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $('#nueva_caja').modal('hide');
-                    tblCajas.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
                 }
             }
         }
@@ -957,20 +1289,8 @@ function btnEliminarCaja(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Caja Eliminada!',
-                          'Esta caja se eliminó correctamente.',
-                          'success'
-                        )
-                        tblCajas.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblCajas.ajax.reload();
                 }
             }
         }
@@ -995,20 +1315,8 @@ function btnRestaurarCaja(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Caja Restaurada!',
-                          'Esta caja se restauró correctamente.',
-                          'success'
-                        )
-                        tblCajas.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblCajas.ajax.reload();
                 }
             }
         }
@@ -1034,13 +1342,7 @@ function registrarProd(e){
     const precio_venta = document.getElementById("precio_venta");
     if (codigo.value == "" || nombre.value == "" || precio_compra.value == "" || precio_venta.value == "")
     {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: '¡Todos los campos son obligatorios!',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('¡Todos los campos son obliatorios!', 'warning');
     }else
     {
         const url = base_url + "Productos/registrar";
@@ -1051,35 +1353,14 @@ function registrarProd(e){
         http.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if (res == 'Si'){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Producto registrado con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
+                if (res.icono != 'success'){
+                    alertas(res.msg, res.icono);
+                }
+                else{
+                    alertas(res.msg, res.icono);
                     frm.reset();
                     $('#nuevo_producto').modal('hide');
                     tblProductos.ajax.reload();
-                }else if (res == "modificado"){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '¡Producto modificado con éxito!',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $('#nuevo_producto').modal('hide');
-                    tblProductos.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
                 }
             }
         }
@@ -1131,20 +1412,8 @@ function btnEliminarProd(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Producto Eliminado!',
-                          'Este producto se eliminó correctamente.',
-                          'success'
-                        )
-                        tblProductos.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblProductos.ajax.reload();
                 }
             }
         }
@@ -1169,20 +1438,8 @@ function btnRestaurarProd(id){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
-                        Swal.fire(
-                          '¡Producto Restaurado!',
-                          'Este producto se restauró correctamente.',
-                          'success'
-                        )
-                        tblProductos.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Error!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblProductos.ajax.reload();
                 }
             }
         }
@@ -1215,34 +1472,66 @@ function deleteImg(){
 
 function buscarCodigo(e){
     e.preventDefault();
-    //El valor 13 hace referencia a la tecla enter
-    if (e.which == 13){
-        const cod = document.getElementById("codigo").value;
-        const url = base_url + "Compras/buscarCodigo/"+cod;
-        const http = new XMLHttpRequest();
-        http.open("GET", url, true);
-        http.send();
-        http.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200){
-            const res = JSON.parse(this.responseText);
-            if (res){
-                document.getElementById('nombre').value = res.descripcion;
-                document.getElementById('precio').value = res.precio_compra;
-                document.getElementById('id').value = res.id;
-                document.getElementById('cantidad').focus();
-            }else{
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: '¡No se encuentra el producto con ese código!',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-                document.getElementById('codigo').value = '';
-                document.getElementById('codigo').focus();
+    const cod = document.getElementById("codigo").value;
+    if (cod != ""){
+        //El valor 13 hace referencia a que se presionó la tecla enter
+        if (e.which == 13){
+            const url = base_url + "Compras/buscarCodigo/"+cod;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                const res = JSON.parse(this.responseText);
+                if (res){
+                    document.getElementById('nombre').value = res.descripcion;
+                    document.getElementById('precio').value = res.precio_compra;
+                    document.getElementById('id').value = res.id;
+                    document.getElementById('cantidad').removeAttribute('disabled');
+                    document.getElementById('cantidad').focus();
+                }else{
+                    alertas('¡No se encuentra el producto con ese código!', 'error');
+                    document.getElementById('codigo').value = '';
+                    document.getElementById('codigo').focus();
+                }
             }
         }
+        } 
+    }else{
+        alertas('¡Ingrese el código de barras del producto!', 'warning');
     }
+}
+
+//Se reutiliza el mismo codigo de buscarCodigo() cambiando solo la variable res.precio_venta
+function buscarCodigoVenta(e){
+    e.preventDefault();
+    const cod = document.getElementById("codigo").value;
+    if (cod != ""){
+        //El valor 13 hace referencia a que se presionó la tecla enter
+        if (e.which == 13){
+            const url = base_url + "Compras/buscarCodigo/"+cod;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                const res = JSON.parse(this.responseText);
+                if (res){
+                    document.getElementById('nombre').value = res.descripcion;
+                    document.getElementById('precio').value = res.precio_venta;
+                    document.getElementById('id').value = res.id;
+                    document.getElementById('cantidad').removeAttribute('disabled');
+                    document.getElementById('cantidad').focus();
+                }else{
+                    alertas('¡No se encuentra el producto con ese código!', 'error');
+                    document.getElementById('codigo').value = '';
+                    document.getElementById('codigo').focus();
+                }
+            }
+        }
+        } 
+    }else{
+        alertas('¡Ingrese el código de barras del producto!', 'warning');
     }
 }
 
@@ -1262,25 +1551,208 @@ function calcularPrecio(e){
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "Ok"){
+                    if (res.icono != "success"){
+                        alertas(res.msg, res.icono);
+                    }else{
                         frm.reset();
                         cargarDetalle();
                     }
                 }
             }
+            document.getElementById('cantidad').setAttribute('disabled', 'disabled');
+            document.getElementById('codigo').focus();
         }
     }
 }
-cargarDetalle();
+
+function calcularPrecioVenta(e){
+    e.preventDefault();
+    const cant = document.getElementById('cantidad').value;
+    const precio = document.getElementById('precio').value;
+    document.getElementById('sub_total').value = cant * precio;
+
+    if (e.which == 13){
+        if(cant > 0){
+            const url = base_url + "Compras/ingresarVenta";
+            const frm = document.getElementById('frmVenta');
+            const http = new XMLHttpRequest();
+            http.open("POST", url, true);
+            http.send(new FormData(frm));
+            http.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    if (res.icono != "success"){
+                        alertas(res.msg, res.icono);
+                    }else{
+                        frm.reset();
+                        cargarDetalleVenta();
+                    }
+                }
+            }
+            document.getElementById('cantidad').setAttribute('disabled', 'disabled');
+            document.getElementById('codigo').focus();
+        }
+    }
+}
+//También se llama la función acá para mostrar la lista de detalles al entrar a la sección compras
+//y no solo cuándo se agrega un nuevo producto a la compra
+if (document.getElementById("tblDetalle")){
+    cargarDetalle();
+}
 function cargarDetalle(){
-    const url = base_url + "Compras/listar";
+    const url = base_url + "Compras/listar/detalle";
     const frm = document.getElementById('frmCompra');
     const http = new XMLHttpRequest();
     http.open("GET", url, true);
     http.send();
     http.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            console.log(this.responseText);
+            const res = JSON.parse(this.responseText);
+            let html = '';
+            //Se recorre la tabla detalles
+            //y se dibuja concatenando por fila cada producto agregado a la compra
+            res.detalle.forEach(row => {
+                html += `<tr>
+                            <td>${row['id']}</td>
+                            <td>${row['descripcion']}</td>
+                            <td>${row['cantidad']}</td>
+                            <td>${row['precio']}</td>
+                            <td>${row['sub_total']}</td>
+                            <td>
+                                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']}, 1)"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>`
+            });
+            document.getElementById("tblDetalle").innerHTML = html;
+            document.getElementById("total").value = res.total_pagar.total;
         }
     }
+}
+if (document.getElementById("tblDetalleVenta")){
+    cargarDetalleVenta();
+}
+function cargarDetalleVenta(){
+    const url = base_url + "Compras/listar/detalle_temp";
+    const frm = document.getElementById('frmCompra');
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            let html = '';
+            //Se recorre la tabla detalles
+            //y se dibuja concatenando por fila cada producto agregado a la compra
+            res.detalle.forEach(row => {
+                html += `<tr>
+                            <td>${row['id']}</td>
+                            <td>${row['descripcion']}</td>
+                            <td>${row['cantidad']}</td>
+                            <td>${row['precio']}</td>
+                            <td>${row['sub_total']}</td>
+                            <td>
+                                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']}, 0)"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>`
+            });
+            document.getElementById("tblDetalleVenta").innerHTML = html;
+            document.getElementById("total").value = res.total_pagar.total;
+        }
+    }
+}
+
+function deleteDetalle(id, accion){
+    let url;
+    if (accion == 1){
+        url = base_url + "Compras/delete/"+id;
+    }else{
+        url = base_url + "Compras/deleteVenta/"+id;
+    }
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            if (res == "Ok")
+            {
+                if (accion == 1){
+                    cargarDetalle();
+                }else{
+                    cargarDetalleVenta();
+                }
+            }else
+            {
+                alertas(res, 'error');
+            }
+        }
+    }
+}
+
+function procesar(accion){
+    Swal.fire({
+        title: '¿Está seguro de realizar la operación?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, continuar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            let url;
+            if (accion == 1){
+                url = base_url + "Compras/registrarCompra/";
+            }else{
+                const id_cliente = document.getElementById("cliente").value;
+                url = base_url + "Compras/registrarVenta/" + id_cliente;
+            }
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    console.log(this.responseText);
+                    const res = JSON.parse(this.responseText);
+                    if (res.msg == "Ok"){
+                        let rutaPDF;
+                        if (accion == 1){
+                            //Se abre una nueva pestaña generando un pdf de lo comprado
+                            rutaPDF = base_url + "Compras/generarPdf/" + res.id_compra;
+                        }else{
+                            rutaPDF = base_url + "Compras/generarPdfVenta/" + res.id_venta;
+                        }
+                        window.open(rutaPDF);
+                        window.location.reload();
+                    }else{
+                        alertas(res, 'error');
+                    }
+                }
+            }
+        }
+    })
+}
+
+function ModificarEmpresa(){
+    const frm = document.getElementById("frmEmpresa");
+    const url = base_url + "Administracion/modificar/";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send(new FormData(frm));
+    http.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            alertas(res.msg, res.icono);
+        }
+    }
+}
+
+function alertas(mensaje, icono){
+    Swal.fire({
+        position: 'top-end',
+        icon: icono,
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 2000
+    })
 }

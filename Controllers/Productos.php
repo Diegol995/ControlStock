@@ -52,7 +52,7 @@
             $fecha = date('YmdHis');
             if ($id == ""){
                 if (empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta)){
-                    $msg = '¡Todos los campos son obligatorios!';
+                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
                     //Si no está vacío...
                     if (!empty($imgName)){
@@ -70,16 +70,16 @@
                             //Se guarda el archivo cargado indicando el nombre temporal y el destino de la carpeta
                             move_uploaded_file($tmpName, $destino);
                         }
-                        $msg = 'Si';
+                        $msg = array('msg' => '¡Producto Registrado!', 'icono' => 'success');
                     }else if ($data == 'existe'){
-                        $msg = '¡Ya existe un producto con ese código de barras!';
+                        $msg = array('msg' => '¡Ya existe un producto con ese código de barras!', 'icono' => 'warning');
                     }else{
-                        $msg = "¡Error al registrar el Producto!";
+                        $msg = array('msg' => '¡Error al registrar el Producto!', 'icono' => 'error');
                     }
                 }
             }else{
                 if (empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta)){
-                    $msg = '¡Todos los campos son obligatorios!';
+                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
                     $imgDelete = $this->model->editarProd($id);
                     //Se elimina el archivo solo si es distinto de default para que no se borre el mismo
@@ -104,11 +104,11 @@
                             if (!empty($imgName)){
                                 move_uploaded_file($tmpName, $destino);
                             }
-                            $msg = 'modificado';
+                            $msg = array('msg' => '¡Datos Modificados!', 'icono' => 'success');
                         }else if ($data == 'existe'){
-                            $msg = "¡Ya existe un producto con ese código de barras!";
+                            $msg = array('msg' => '¡Ya existe un producto con ese código de barras!', 'icono' => 'warning');
                         }else{
-                            $msg = "¡Error al registrar el Producto!";
+                            $msg = array('msg' => '¡Error al registrar el Producto!', 'icono' => 'error');
                         }
                 }
             }
@@ -125,9 +125,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionProducto(0, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Producto Eliminado!', 'icono' => 'success');
             }else{
-                $msg = "Error al eliminar el producto";
+                $msg = array('msg' => '¡Error al eliminar el producto!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -136,17 +136,12 @@
         public function restaurar(int $id){
             $data = $this->model->accionProducto(1, $id);
             if ($data == 1){
-                $msg = "Ok";
+                $msg = array('msg' => '¡Producto Restaurado!', 'icono' => 'success');
             }else{
-                $msg = "Error al restaurar el producto";
+                $msg = array('msg' => '¡Error al restaurar el producto!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
-        }
-
-        public function salir(){
-            session_destroy();
-            header("location: ".base_url);
         }
     }
 ?>

@@ -3,22 +3,24 @@
     <li class="breadcrumb-item active">Productos</li>
 </ol>
 <button class="btn btn-primary mb-2" type="button" onclick="frmProducto();" title="Nuevo Producto"><i class="fas fa-plus"></i></button>
-<table class="table table-light" id="tblProductos">
-    <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Imagen</th>
-            <th>Código</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Estado</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+<div class="table-resposive">
+    <table class="table table-light" id="tblProductos">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Imagen</th>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 <div id="nuevo_producto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
