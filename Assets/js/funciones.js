@@ -1781,7 +1781,7 @@ function reporteStock(){
                     labels: nombre,
                     datasets: [{
                         data: cantidad,
-                        backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                        backgroundColor: ['#E74C3C', '#8E44AD', '#3498DB', '#16A085', '#2ECC71'],
                     }],
                 },
             });
@@ -1811,7 +1811,7 @@ function productosVendidos(){
                     labels: nombre,
                     datasets: [{
                         data: cantidad,
-                        backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                        backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#D35400'],
                     }],
                 },
             });
