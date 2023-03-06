@@ -22,7 +22,7 @@
                                     <div class="card-body">
                                         <form id="frmLogin">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="usuario" name="usuario" type="text" placeholder="Ingrese Usuario" />
+                                                <input autocomplete="off" class="form-control" id="usuario" name="usuario" type="text" placeholder="Ingrese Usuario" />
                                                 <label for="usuario"><i class="fas fa-user"></i> Usuario</label>
                                             </div>
                                             <div class="form-floating mb-3">

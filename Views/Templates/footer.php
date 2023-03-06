@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="clave_nueva">Nueva Contraseña</label>
-                                <input id="clave_nueva" class="form-control" type="password" name="clave_nueva" placeholder="Contraseña Nueva">
+                                <input id="clave_nueva" class="form-control" type="password" name="clave_nueva" placeholder="Nueva Contraseña ">
                             </div>
                             <div class="form-group">
                                 <label for="confirmar_clave">Confirmar Contraseña</label>

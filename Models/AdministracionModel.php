@@ -30,7 +30,7 @@
         }
 
         public function getStockMinimo(){
-            $sql = "SELECT * FROM productos WHERE cantidad < 130 ORDER BY cantidad DESC limit 4";
+            $sql = "SELECT * FROM productos WHERE cantidad < 130 ORDER BY cantidad limit 4";
             $data = $this->selectAll($sql);
             return $data;
         }

@@ -36,34 +36,17 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools fa-2x"></i></div>
-                                Administración
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping fa-2x"></i></div>
+                                Salidas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseVentas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<?php echo base_url; ?>Usuarios"><i class="fas fa-user m-1 fa-2x"></i>Usuarios</a>
-                                    <a class="nav-link" href="<?php echo base_url; ?>Cajas"><i class="fa-solid fa-cash-register m-1 fa-2x"></i>Cajas</a>
-                                    <a class="nav-link" href="<?php echo base_url; ?>Administracion"><i class="fas fa-tools m-1 fa-2x"></i>Configuración</a>
+                                    <a class="nav-link" href="<?php echo base_url; ?>Compras/ventas"><i class="fa-solid fa-cart-shopping fa-2x m-1"></i>Nueva Venta</a>
+                                    <a class="nav-link" href="<?php echo base_url; ?>Compras/historial_ventas"><i class="fas fa-list m-1 fa-2x"></i>Historial Ventas</a>
                                 </nav>
                             </div>
-                            <a class="nav-link" href="<?php echo base_url; ?>Clientes">
-                                <div class="sb-nav-link-icon"><i class="fas fa-users fa-2x"></i></div>
-                                Clientes
-                            </a>
-                            <a class="nav-link" href="<?php echo base_url; ?>Medidas">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-scale-unbalanced fa-2x"></i></div>
-                                Medidas
-                            </a>
-                            <a class="nav-link" href="<?php echo base_url; ?>Categorias">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-list fa-2x"></i></div>
-                                Categorías
-                            </a>
-                            <a class="nav-link" href="<?php echo base_url; ?>Productos">
-                                <div class="sb-nav-link-icon"><i class="fab fa-product-hunt fa-2x"></i></div>
-                                Productos
-                            </a>
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
                                 <div class="sb-nav-link-icon"><i class="fas fa-cart-flatbed fa-2x"></i></div>
@@ -77,17 +60,38 @@
                                 </nav>
                             </div>
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping fa-2x"></i></div>
-                                Salidas
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tools fa-2x"></i></div>
+                                Administración
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseVentas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<?php echo base_url; ?>Compras/ventas"><i class="fa-solid fa-cart-shopping fa-2x m-1"></i>Nueva Venta</a>
-                                    <a class="nav-link" href="<?php echo base_url; ?>Compras/historial_ventas"><i class="fas fa-list m-1 fa-2x"></i>Historial Ventas</a>
+                                    <a class="nav-link" href="<?php echo base_url; ?>Usuarios"><i class="fas fa-user m-1 fa-2x"></i>Usuarios</a>
+                                    <a class="nav-link" href="<?php echo base_url; ?>Cajas"><i class="fa-solid fa-cash-register m-1 fa-2x"></i>Cajas</a>
+                                    <a class="nav-link" href="<?php echo base_url; ?>Administracion"><i class="fas fa-tools m-1 fa-2x"></i>Configuración</a>
                                 </nav>
                             </div>
+
+                            <a class="nav-link" href="<?php echo base_url; ?>Clientes">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users fa-2x"></i></div>
+                                Clientes
+                            </a>
+
+                            <a class="nav-link" href="<?php echo base_url; ?>Medidas">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-scale-unbalanced fa-2x"></i></div>
+                                Medidas
+                            </a>
+
+                            <a class="nav-link" href="<?php echo base_url; ?>Categorias">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-list fa-2x"></i></div>
+                                Categorías
+                            </a>
+
+                            <a class="nav-link" href="<?php echo base_url; ?>Productos">
+                                <div class="sb-nav-link-icon"><i class="fab fa-product-hunt fa-2x"></i></div>
+                                Productos
+                            </a>
                         </div>
                     </div>
                 </nav>
