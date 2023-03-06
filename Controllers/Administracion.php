@@ -38,5 +38,17 @@
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
+
+        public function reporteStock(){
+            $data = $this->model->getStockMinimo();
+            echo json_encode($data);
+            die();
+        }
+
+        public function productosVendidos(){
+            $data = $this->model->getproductosVendidos();
+            echo json_encode($data);
+            die();
+        }
     }
 ?>

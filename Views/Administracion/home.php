@@ -7,7 +7,7 @@
                 <i class="fas fa-user fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="<?php base_url; ?>Usuarios" class="text-white">Ver Detalle</a>
+                <a href="<?php echo base_url; ?>Usuarios" class="text-white">Ver Detalle</a>
                 <span class="text-white"><?php echo $data['usuarios']['total'] ?></span>
             </div>
         </div>
@@ -19,7 +19,7 @@
                 <i class="fas fa-user fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="<?php base_url; ?>Clientes" class="text-white">Ver Detalle</a>
+                <a href="<?php echo base_url; ?>Clientes" class="text-white">Ver Detalle</a>
                 <span class="text-white"><?php echo $data['clientes']['total'] ?></span>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 <i class="fab fa-product-hunt fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="<?php base_url; ?>Usuarios" class="text-white">Ver Detalle</a>
+                <a href="<?php echo base_url; ?>Productos" class="text-white">Ver Detalle</a>
                 <span class="text-white"><?php echo $data['productos']['total'] ?></span>
             </div>
         </div>
@@ -54,6 +54,7 @@
                 Productos más Vendidos
             </div>
             <div class="card-body">
+            <canvas id="ProductosVendidos" width="400" height="400"></canvas>
             </div>
         </div>
     </div>
