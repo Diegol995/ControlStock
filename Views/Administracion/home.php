@@ -39,7 +39,7 @@
     <div class="col-xl-3 col-md-6">
         <div class="card bg-warning">
             <div class="card-body d-flex text-white">
-                Ventas por dia
+                Ventas del día
                 <i class="fas fa-cash-register fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">

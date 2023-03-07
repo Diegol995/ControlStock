@@ -113,9 +113,9 @@
             return $res;
         }
 
-        public function registarDetalleVenta(int $id_venta, int $id_producto,int $cantidad, string $precio, string $sub_total){
-            $sql = "INSERT INTO detalle_ventas(id_venta,id_producto,cantidad,precio,sub_total) VALUES(?,?,?,?,?)";
-            $datos = array($id_venta, $id_producto,$cantidad, $precio, $sub_total);
+        public function registarDetalleVenta(int $id_venta, int $id_producto,int $cantidad, string $desc,string $precio, string $sub_total){
+            $sql = "INSERT INTO detalle_ventas(id_venta,id_producto,cantidad,descuento,precio,sub_total) VALUES(?,?,?,?,?,?)";
+            $datos = array($id_venta, $id_producto, $cantidad, $desc, $precio, $sub_total);
             $data = $this->save($sql, $datos);
             if ($data == 1){
                 $res = "Ok";
@@ -206,6 +206,30 @@
                 FROM clientes c
                 INNER JOIN ventas v ON c.id = v.id_cliente
                 WHERE v.id = $id_venta";
+            $data = $this->select($sql);
+            return $data;
+        }
+
+        public function verificarDescuento(int $id){
+            $sql = "SELECT * FROM detalle_temp WHERE id = $id";
+            $data = $this->select($sql);
+            return $data;
+        }
+
+        public function actualizarDescuento(string $desc, string $sub_total,int $id){
+            $sql = "UPDATE detalle_temp SET descuento = ?, sub_total = ? WHERE id = ?";
+            $datos = array($desc, $sub_total, $id);
+            $data = $this->save($sql, $datos);
+            if ($data == 1){
+                $res = "Ok";
+            }else{
+                $res = "error";
+            }
+            return $res;
+        }
+
+        public function getDescuento(int $id_venta){
+            $sql = "SELECT descuento, SUM(descuento) AS total FROM detalle_ventas WHERE id_venta = $id_venta";
             $data = $this->select($sql);
             return $data;
         }

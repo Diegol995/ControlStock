@@ -173,9 +173,10 @@
                 foreach ($detalle as $row){
                     $id_producto = $row['id_producto'];
                     $cantidad = $row['cantidad'];
+                    $desc = $row['descuento'];
                     $precio = $row['precio'];
-                    $sub_total = $cantidad * $precio;
-                    $this->model->registarDetalleVenta($id_venta['id'], $id_producto,$cantidad, $precio, $sub_total);
+                    $sub_total = ($cantidad * $precio) - $desc;
+                    $this->model->registarDetalleVenta($id_venta['id'], $id_producto, $cantidad, $desc,$precio, $sub_total);
                     //Se actualiza el stock de productos
                     $stock_actual = $this->model->getProductos($id_producto);
                     $stock = $stock_actual['cantidad'] - $cantidad;
@@ -299,6 +300,7 @@
             require('Libraries/fpdf/fpdf.php');
 
             $empresa = $this->model->getEmpresa();
+            $descuento = $this->model->getDescuento($id_venta);
             //Se obtienen los detalles de los productos comprados
             $productos = $this->model->getProdVenta($id_venta);
             //Se crea una instancia y como parámetro se pasa el tamaño de la hoja
@@ -384,6 +386,8 @@
             }
             $pdf->Ln();
             $pdf->SetFont('Arial','B',10);
+            $pdf->Cell(105, 5, 'Descuento Total', 0, 1, 'R');
+            $pdf->Cell(105, 5, '$'.$descuento['total'], 0, 1, 'R');
             $pdf->Cell(105, 5, 'Total a Pagar', 0, 1, 'R');
             $pdf->Cell(105, 5, '$'.$productos[0]['total'], 0, 1, 'R');
 
@@ -391,6 +395,27 @@
             $pdf->SetFont('Arial','I',8);
             $pdf->Cell(0,10,utf8_decode($empresa['mensaje']),0,0,'C');
             $pdf->Output();
+        }
+
+        public function calcularDescuento($datos){
+            $array = explode(',', $datos);
+            $id = $array[0];
+            $desc = $array[1];
+            if (empty($id) || empty($desc)){
+                $msg = array ('msg' => '¡El campo no puede estar vacío!', 'icono' => 'warning');
+            }else{
+                $desc_actual = $this->model->verificarDescuento($id);
+                $desc_total = $desc_actual['descuento'] + $desc;
+                $sub_total = ($desc_actual['cantidad'] * $desc_actual['precio']) - $desc_total;
+                $data = $this->model->actualizarDescuento($desc_total, $sub_total,$id);
+                if ($data == 'Ok'){
+                    $msg = array ('msg' => '¡Descuento aplicado!', 'icono' => 'success');
+                }else{
+                    $msg = array ('msg' => '¡No se aplicó el descuento!', 'icono' => 'error');
+                }
+                echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+                die();
+            }
         }
     }
 ?>

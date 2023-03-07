@@ -1648,6 +1648,8 @@ function cargarDetalleVenta(){
                             <td>${row['id']}</td>
                             <td>${row['descripcion']}</td>
                             <td>${row['cantidad']}</td>
+                            <td><input class="form-control" placeholder="Descuento" type="text" onkeyup="calcularDescuento(event, ${row['id']})"></td>
+                            <td>${row['descuento']}</td>
                             <td>${row['precio']}</td>
                             <td>${row['sub_total']}</td>
                             <td>
@@ -1657,6 +1659,27 @@ function cargarDetalleVenta(){
             });
             document.getElementById("tblDetalleVenta").innerHTML = html;
             document.getElementById("total").value = res.total_pagar.total;
+        }
+    }
+}
+
+function calcularDescuento(e, id){
+    e.preventDefault();
+    if (e.target.value == ''){
+        alertas('Ingrese el Descuento', 'warning');
+    }else{
+        if (e.which == 13){
+            const url = base_url + "Compras/calcularDescuento/"+id+"/"+e.target.value;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    alertas(res.msg, res.icono);
+                    cargarDetalleVenta();
+                }
+            }
         }
     }
 }
@@ -1757,12 +1780,14 @@ function alertas(mensaje, icono){
     })
 }
 
-reporteStock();
-productosVendidos();
+if (document.getElementById('stockMinimo')){
+    reporteStock();
+    productosVendidos();
+}
 function reporteStock(){
     const url = base_url + "Administracion/reporteStock";
     const http = new XMLHttpRequest();
-    http.open("POST", url, true);
+    http.open("GET", url, true);
     http.send();
     http.onreadystatechange = function(){
     if (this.readyState == 4 && this.status == 200){
@@ -1792,7 +1817,7 @@ function reporteStock(){
 function productosVendidos(){
     const url = base_url + "Administracion/productosVendidos";
     const http = new XMLHttpRequest();
-    http.open("POST", url, true);
+    http.open("GET", url, true);
     http.send();
     http.onreadystatechange = function(){
     if (this.readyState == 4 && this.status == 200){
