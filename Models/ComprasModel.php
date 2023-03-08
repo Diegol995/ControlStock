@@ -234,8 +234,8 @@
             return $data;
         }
 
-        public function getAnular(int $id_compra){
-            $sql = "UPDATE compras SET estado = ? WHERE id = ?";
+        public function getAnular(string $table,int $id_compra){
+            $sql = "UPDATE $table SET estado = ? WHERE id = ?";
             $datos = array(0, $id_compra);
             $data = $this->save($sql, $datos);
             if ($data == 1){

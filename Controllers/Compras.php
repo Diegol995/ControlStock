@@ -302,9 +302,20 @@
         public function listar_historialVentas(){
             $data = $this->model->getHistorialVentas();
             for ($i=0; $i < count($data); $i++){
-                $data[$i]['acciones'] = '<div>
+                if($data[$i]['estado'] == 1){
+                    $data[$i]['estado'] = '<span class="badge badge-success" style="background:#5cb85c">Completado</span>';
+                    //En el botón anular se le envía como parámetro el id de la venta
+                    //que se obtiene de getHistorialVentas
+                    $data[$i]['acciones'] = '<div>
+                    <button class="btn btn-warning" onclick="btnAnularV(' . $data[$i]['id'] . ')" title="Anular Venta"><i class="fas fa-ban"></i></button>
                     <a class="btn btn-danger" target="blank" href="'.base_url. "Compras/generarPdfVenta/" .$data[$i]['id'].'" title="Generar PDF"><i class="fas fa-file-pdf"></i></a>
                     </div>';
+                }else{
+                    $data[$i]['estado'] = '<span class="badge badge-danger" style="background:#d9534f">Anulado</span>';
+                    $data[$i]['acciones'] = '<div>
+                    <a class="btn btn-danger" target="blank" href="'.base_url. "Compras/generarPdfVenta/" .$data[$i]['id'].'" title="Generar PDF"><i class="fas fa-file-pdf"></i></a>
+                    </div>';
+                }
             }
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
@@ -435,7 +446,7 @@
 
         public function anularCompra($id_compra){
             $data = $this->model->getProdCompra($id_compra);
-            $anular = $this->model->getAnular($id_compra);
+            $anular = $this->model->getAnular('compras',$id_compra);
             foreach ($data as $row) {
                 //Se actualiza el stock de productos
                 $stock_actual = $this->model->getProductos($row['id_producto']);
@@ -444,6 +455,24 @@
             }
             if ($anular == 'Ok'){
                 $msg = array('msg' => '¡Compra Anulada!', 'icono' => 'success');
+            }else{
+                $msg = array('msg' => '¡Error al Anular!', 'icono' => 'error');
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+        public function anularVenta($id_venta){
+            $data = $this->model->getProdVenta($id_venta);
+            $anular = $this->model->getAnular('ventas',$id_venta);
+            foreach ($data as $row) {
+                //Se actualiza el stock de productos
+                $stock_actual = $this->model->getProductos($row['id_producto']);
+                $stock = $stock_actual['cantidad'] + $row['cantidad'];
+                $this->model->actualizarStock($stock, $row['id_producto']);
+            }
+            if ($anular == 'Ok'){
+                $msg = array('msg' => '¡Venta Anulada!', 'icono' => 'success');
             }else{
                 $msg = array('msg' => '¡Error al Anular!', 'icono' => 'error');
             }

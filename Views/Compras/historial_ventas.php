@@ -13,6 +13,7 @@
                         <th>Cliente</th>
                         <th>Total</th>
                         <th>Fecha Compra</th>
+                        <th>Estado</th>
                         <th></th>
                     </tr>
                 </thead>

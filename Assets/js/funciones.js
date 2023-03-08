@@ -1,4 +1,4 @@
-let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos, t_h_c;
+let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos, t_h_c, t_h_v;
 //Si el contenido del DOM se cargó, se ejecuta la función
 document.addEventListener('DOMContentLoaded', function(){
     $('#cliente').select2();
@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //FIN DE LA TABAL HISTORIAL COMPRAS
 
-    $('#t_historial_v').DataTable( {
+    t_h_v = $('#t_historial_v').DataTable( {
         ajax: {
             url: base_url + "Compras/listar_historialVentas",
             dataSrc: ''
@@ -635,6 +635,9 @@ document.addEventListener('DOMContentLoaded', function(){
             },
             {
                 'data' : 'fecha'
+            },
+            {
+                'data' : 'estado'
             },
             {
                 'data' : 'acciones'
@@ -1861,6 +1864,32 @@ function btnAnularC(id){
                     const res = JSON.parse(this.responseText);
                     alertas(res.msg, res.icono);
                     t_h_c.ajax.reload();
+                }
+            }
+        }
+    })
+}
+
+function btnAnularV(id){
+    Swal.fire({
+        title: '¿Está seguro de realizar la operación?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, continuar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Compras/anularVenta/" + id;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    alertas(res.msg, res.icono);
+                    t_h_v.ajax.reload();
                 }
             }
         }
