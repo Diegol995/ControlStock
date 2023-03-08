@@ -39,7 +39,8 @@
             $comprobar = $this->model->consultarDetalle('detalle', $id_producto, $id_usuario);
             if (empty($comprobar)){
                 $sub_total = $precio * $cantidad;
-                $data = $this->model->registrarDetalle('detalle', $id_producto, $id_usuario, $precio, $cantidad, $sub_total);
+                $sub_total_actual = $sub_total;
+                $data = $this->model->registrarDetalle('detalle', $id_producto, $id_usuario, $precio, $cantidad, $sub_total_actual,$sub_total);
                 if ($data == "Ok"){
                     $msg = array('msg' => 'Ok', 'icono' => 'success');
                 }else{
@@ -49,7 +50,8 @@
             {
                 $total_cantidad = $comprobar['cantidad'] + $cantidad;
                 $sub_total = $total_cantidad * $precio;
-                $data = $this->model->actualizarDetalle('detalle', $precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
+                $sub_total_actual = $sub_total;
+                $data = $this->model->actualizarDetalle('detalle', $precio, $total_cantidad, $sub_total_actual,$sub_total, $id_producto, $id_usuario);
                 if ($data == "modificado"){
                     $msg = array('msg' => 'modificado', 'icono' => 'success');
                 }else{
@@ -278,9 +280,20 @@
         public function listar_historial(){
             $data = $this->model->getHistorialCompras();
             for ($i=0; $i < count($data); $i++){
-                $data[$i]['acciones'] = '<div>
+                if($data[$i]['estado'] == 1){
+                    $data[$i]['estado'] = '<span class="badge badge-success" style="background:#5cb85c">Completado</span>';
+                    //En el botón anular se le envía como parámetro el id de la compra
+                    //que se obtiene de getHistorialCompras
+                    $data[$i]['acciones'] = '<div>
+                    <button class="btn btn-warning" onclick="btnAnularC(' . $data[$i]['id'] . ')" title="Anular Compra"><i class="fas fa-ban"></i></button>
                     <a class="btn btn-danger" target="blank" href="'.base_url. "Compras/generarPdf/" .$data[$i]['id'].'" title="Generar PDF"><i class="fas fa-file-pdf"></i></a>
                     </div>';
+                }else{
+                    $data[$i]['estado'] = '<span class="badge badge-danger" style="background:#d9534f">Anulado</span>';
+                    $data[$i]['acciones'] = '<div>
+                    <a class="btn btn-danger" target="blank" href="'.base_url. "Compras/generarPdf/" .$data[$i]['id'].'" title="Generar PDF"><i class="fas fa-file-pdf"></i></a>
+                    </div>';
+                } 
             }
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
@@ -418,6 +431,24 @@
                 echo json_encode($msg, JSON_UNESCAPED_UNICODE);
                 die();
             }
+        }
+
+        public function anularCompra($id_compra){
+            $data = $this->model->getProdCompra($id_compra);
+            $anular = $this->model->getAnular($id_compra);
+            foreach ($data as $row) {
+                //Se actualiza el stock de productos
+                $stock_actual = $this->model->getProductos($row['id_producto']);
+                $stock = $stock_actual['cantidad'] - $row['cantidad'];
+                $this->model->actualizarStock($stock, $row['id_producto']);
+            }
+            if ($anular == 'Ok'){
+                $msg = array('msg' => '¡Compra Anulada!', 'icono' => 'success');
+            }else{
+                $msg = array('msg' => '¡Error al Anular!', 'icono' => 'error');
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            die();
         }
     }
 ?>

@@ -1,4 +1,4 @@
-let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos;
+let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos, t_h_c;
 //Si el contenido del DOM se cargó, se ejecuta la función
 document.addEventListener('DOMContentLoaded', function(){
     $('#cliente').select2();
@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //FIN DE LA TABLA PRODUCTOS
 
-    $('#t_historial_c').DataTable( {
+    t_h_c = $('#t_historial_c').DataTable( {
         ajax: {
             url: base_url + "Compras/listar_historial",
             dataSrc: ''
@@ -543,6 +543,9 @@ document.addEventListener('DOMContentLoaded', function(){
             },
             {
                 'data' : 'fecha'
+            },
+            {
+                'data' : 'estado'
             },
             {
                 'data' : 'acciones'
@@ -1836,6 +1839,32 @@ function productosVendidos(){
             });
         }
     }
+}
+
+function btnAnularC(id){
+    Swal.fire({
+        title: '¿Está seguro de realizar la operación?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, continuar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Compras/anularCompra/" + id;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    alertas(res.msg, res.icono);
+                    t_h_c.ajax.reload();
+                }
+            }
+        }
+    })
 }
 
 

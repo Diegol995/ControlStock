@@ -71,9 +71,9 @@
             return $data;
         }
         
-        public function actualizarDetalle(string $table, string $precio, int $cantidad, string $sub_total, int $id_producto, int $id_usuario){
-            $sql = "UPDATE $table SET precio = ?, cantidad = ?, sub_total = ? WHERE id_producto = ? AND id_usuario = ?";
-            $datos = array($precio,$cantidad,$sub_total,$id_producto,$id_usuario);
+        public function actualizarDetalle(string $table, string $precio, int $cantidad, string $sub_total_actual,string $sub_total, int $id_producto, int $id_usuario){
+            $sql = "UPDATE $table SET precio = ?, cantidad = ?, sub_total_actual = ?,sub_total = ? WHERE id_producto = ? AND id_usuario = ?";
+            $datos = array($precio,$cantidad,$sub_total_actual,$sub_total,$id_producto,$id_usuario);
             $data = $this->save($sql, $datos);
             if ($data == 1){
                 $res = "modificado";
@@ -232,6 +232,18 @@
             $sql = "SELECT descuento, SUM(descuento) AS total FROM detalle_ventas WHERE id_venta = $id_venta";
             $data = $this->select($sql);
             return $data;
+        }
+
+        public function getAnular(int $id_compra){
+            $sql = "UPDATE compras SET estado = ? WHERE id = ?";
+            $datos = array(0, $id_compra);
+            $data = $this->save($sql, $datos);
+            if ($data == 1){
+                $res = "Ok";
+            }else{
+                $res = "error";
+            }
+            return $res;
         }
     }
 ?>
