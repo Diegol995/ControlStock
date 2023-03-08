@@ -21,7 +21,10 @@
         }
 
         public function getUsuarios(){
-            $sql = "SELECT u.*, c.id AS id_caja, c.caja FROM usuarios u INNER JOIN caja c WHERE u.id_caja = c.id";
+            $sql = "SELECT u.*, c.id AS id_caja, c.caja 
+                        FROM usuarios u 
+                        INNER JOIN caja c 
+                        WHERE u.id_caja = c.id";
             $data = $this->selectAll($sql);
             return $data;
         }

@@ -6,9 +6,8 @@
 <table class="table table-light" id="tblClientes">
     <thead class="thead-dark">
         <tr>
-            <th>Id</th>
-            <th>Cuit/Cuil</th>
             <th>Nombre</th>
+            <th>Cuit/Cuil</th>
             <th>Teléfono</th>
             <th>Dirección</th>
             <th>Estado</th>

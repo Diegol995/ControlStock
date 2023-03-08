@@ -67,7 +67,9 @@
         }
 
         public function editarCli(int $id){
-            $sql = "SELECT * FROM clientes WHERE id = $id";
+            $sql = "SELECT * FROM clientes
+                        WHERE id = $id
+                        ORDER BY nombre";
             $data = $this->select($sql);
             return $data;
         }

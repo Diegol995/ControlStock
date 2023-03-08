@@ -75,7 +75,8 @@
             $comprobar = $this->model->consultarDetalle('detalle_temp', $id_producto, $id_usuario);
             if (empty($comprobar)){
                 $sub_total = $precio * $cantidad;
-                $data = $this->model->registrarDetalle('detalle_temp', $id_producto, $id_usuario, $precio, $cantidad, $sub_total);
+                $sub_total_actual = $sub_total;
+                $data = $this->model->registrarDetalle('detalle_temp', $id_producto, $id_usuario, $precio, $cantidad, $sub_total_actual, $sub_total);
                 if ($data == "Ok"){
                     $msg = array('msg' => 'Ok', 'icono' => 'success');
                 }else{
@@ -402,10 +403,11 @@
             $id = $array[0];
             $desc = $array[1];
             if (empty($id) || empty($desc)){
-                $msg = array ('msg' => '¡El campo no puede estar vacío!', 'icono' => 'warning');
+                $msg = array ('msg' => '¡Ingrese el descuento!', 'icono' => 'warning');
             }else{
+                //Se toman todos los datos actuales del producto agregado
                 $desc_actual = $this->model->verificarDescuento($id);
-                $desc_total = $desc_actual['descuento'] + $desc;
+                $desc_total = $desc_actual['descuento'] + (($desc_actual['sub_total'] * $desc)/ 100);
                 $sub_total = ($desc_actual['cantidad'] * $desc_actual['precio']) - $desc_total;
                 $data = $this->model->actualizarDescuento($desc_total, $sub_total,$id);
                 if ($data == 'Ok'){

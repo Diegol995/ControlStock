@@ -7,7 +7,7 @@
         }
 
         public function getClientes(){
-            $sql = "SELECT * FROM clientes WHERE estado = 1";
+            $sql = "SELECT * FROM clientes WHERE estado = 1 ORDER BY nombre";
             $data = $this->selectAll($sql);
             return $data;
         }
@@ -25,9 +25,9 @@
         }
         //Se utilizan los mismos métodos para las compras y para las ventas
         //solo se cambia el parámetro $table para acceder a la tabla temporal de cada una
-        public function registrarDetalle(string $table, int $id_producto, int $id_usuario, string $precio, int $cantidad, string $sub_total){
-            $sql = "INSERT INTO $table(id_producto,id_usuario,precio,cantidad,sub_total) VALUES(?,?,?,?,?)";
-            $datos = array($id_producto,$id_usuario,$precio,$cantidad,$sub_total);
+        public function registrarDetalle(string $table, int $id_producto, int $id_usuario, string $precio, int $cantidad, string $sub_total_actual,string $sub_total){
+            $sql = "INSERT INTO $table(id_producto,id_usuario,precio,cantidad,sub_total_actual,sub_total) VALUES(?,?,?,?,?,?)";
+            $datos = array($id_producto,$id_usuario,$precio,$cantidad,$sub_total_actual,$sub_total);
             $data = $this->save($sql, $datos);
             if ($data == 1){
                 $res = "Ok";
@@ -45,7 +45,7 @@
         }
 
         public function calcularCompra(string $table, int $id_usuario){
-            $sql = "SELECT sub_total, SUM(sub_total) AS total FROM $table WHERE id_usuario = $id_usuario";
+            $sql = "SELECT sub_total_actual, SUM(sub_total_actual) AS total FROM $table WHERE id_usuario = $id_usuario";
             $data = $this->select($sql);
             return $data;
         }
@@ -217,7 +217,7 @@
         }
 
         public function actualizarDescuento(string $desc, string $sub_total,int $id){
-            $sql = "UPDATE detalle_temp SET descuento = ?, sub_total = ? WHERE id = ?";
+            $sql = "UPDATE detalle_temp SET descuento = ?, sub_total_actual = ? WHERE id = ?";
             $datos = array($desc, $sub_total, $id);
             $data = $this->save($sql, $datos);
             if ($data == 1){

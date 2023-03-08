@@ -6,7 +6,6 @@
 <table class="table table-light" id="tblUsuarios">
     <thead class="thead-dark">
         <tr>
-            <th>Id</th>
             <th>Usuario</th>
             <th>Nombre</th>
             <th>Caja</th>

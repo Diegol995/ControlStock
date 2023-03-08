@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         columns: [
             {
-                'data' : 'id'
-            },
-            {
                 'data' : 'usuario'
             },
             {
@@ -100,13 +97,10 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         columns: [
             {
-                'data' : 'id'
+                'data' : 'nombre'
             },
             {
                 'data' : 'cuit_cuil'
-            },
-            {
-                'data' : 'nombre'
             },
             {
                 'data' : 'telefono'
@@ -1648,10 +1642,10 @@ function cargarDetalleVenta(){
                             <td>${row['id']}</td>
                             <td>${row['descripcion']}</td>
                             <td>${row['cantidad']}</td>
-                            <td><input class="form-control" placeholder="Descuento" type="text" onkeyup="calcularDescuento(event, ${row['id']})"></td>
+                            <td><input class="form-control" placeholder="Descuento %" type="text" onkeyup="calcularDescuento(event, ${row['id']})"></td>
                             <td>${row['descuento']}</td>
                             <td>${row['precio']}</td>
-                            <td>${row['sub_total']}</td>
+                            <td>${row['sub_total_actual']}</td>
                             <td>
                                 <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']}, 0)"><i class="fas fa-trash-alt"></i></button>
                             </td>
