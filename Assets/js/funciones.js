@@ -1,5 +1,5 @@
 let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos, t_h_c, t_h_v,
-t_arquero;
+t_arqueo;
 //Si el contenido del DOM se cargó, se ejecuta la función
 document.addEventListener('DOMContentLoaded', function(){
     $('#cliente').select2();
@@ -614,7 +614,7 @@ document.addEventListener('DOMContentLoaded', function(){
         ]
     } );
 
-    //FIN DE LA TABAL HISTORIAL COMPRAS
+    //FIN DE LA TABLA HISTORIAL COMPRAS
 
     t_h_v = $('#t_historial_v').DataTable( {
         ajax: {
@@ -706,7 +706,9 @@ document.addEventListener('DOMContentLoaded', function(){
         ]
     } );
 
-    t_arquero = $('#t_arqueo').DataTable( {
+    //FIN DE LA TABLA HISTORIAL VENTAS
+
+    t_arqueo = $('#t_arqueo').DataTable( {
         ajax: {
             url: base_url + "Cajas/listar_arqueo",
             dataSrc: ''
@@ -799,7 +801,7 @@ document.addEventListener('DOMContentLoaded', function(){
         ]
     } );
 
-    //FIN DE LA TABLA MEDIDAS
+    //FIN DE LA TABLA ARQUEO DE CAJAS
 })
 
 function frmCambiarPass(e){
@@ -1994,6 +1996,9 @@ function btnAnularV(id){
 }
 
 function arqueoCaja(){
+    document.getElementById('ocultar_campos').classList.add('d-none');
+    document.getElementById('btnAccion').textContent = 'Abrir caja';
+    document.getElementById('monto_inicial').value = '';
     $('#abrir_caja').modal('show');
 }
 
@@ -2001,7 +2006,7 @@ function abrirArqueo(e){
     e.preventDefault();
     const monto_inicial = document.getElementById('monto_inicial').value;
     if (monto_inicial == ''){
-        alertas('Ingrese el monto inicial', 'warning');
+        alertas('¡Ingrese el monto inicial!', 'warning');
     }else{
         const frm = document.getElementById('frmAbrirCaja');
         const url = base_url + "Cajas/abrirArqueo";
@@ -2012,8 +2017,29 @@ function abrirArqueo(e){
         if (this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
                 alertas(res.msg, res.icono);
+                t_arqueo.ajax.reload();
                 $('#abrir_caja').modal('hide');
             }
+        }
+    }
+}
+
+function cerrarCaja(){
+    const url = base_url + "Cajas/getVentas";
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            document.getElementById('monto_inicial').value = res.monto_inicial.monto_inicial;
+            document.getElementById('monto_final').value = res.monto_final.total;
+            document.getElementById('total_ventas').value = res.total_ventas.total;
+            document.getElementById('monto_general').value = res.monto_general;
+            document.getElementById('id').value = res.monto_inicial.id;
+            document.getElementById('btnAccion').textContent = 'Cerrar caja';
+            document.getElementById('ocultar_campos').classList.remove('d-none');
+            $('#abrir_caja').modal('show');
         }
     }
 }

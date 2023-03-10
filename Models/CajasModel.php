@@ -89,5 +89,35 @@
             
             return $res;
         }
+
+        public function getVentas(int $id_usuario){
+            $sql = "SELECT SUM(total) AS total FROM ventas WHERE id_usuario = $id_usuario AND estado = 1 AND apertura = 1";
+            $data = $this->select($sql);
+            return $data;
+        }
+
+        public function getTotalVentas(int $id_usuario){
+            $sql = "SELECT COUNT(total) AS total FROM ventas WHERE id_usuario = $id_usuario AND estado = 1 AND apertura = 1";
+            $data = $this->select($sql);
+            return $data;
+        }
+
+        public function getMontoInicial(int $id_usuario){
+            $sql = "SELECT id, monto_inicial FROM cierre_caja WHERE id_usuario = $id_usuario AND estado = 1";
+            $data = $this->select($sql);
+            return $data;
+        }
+
+        public function actualizarArqueo(string $monto_final, string $fecha_cierre, string $total_ventas, string $monto_total, int $id ){            
+            $sql = "UPDATE cierre_caja SET monto_final = ?, fecha_cierre = ?, total_ventas = ?, monto_total = ?, estado = ? WHERE id = ?";
+            $datos = array($monto_final, $fecha_cierre, $total_ventas, $monto_total, 0, $id);
+            $data = $this->save($sql, $datos);
+            if ($data == 1){
+                $res = 'Ok';
+            }else{
+                $res = 'error';
+            }
+            return $res;
+        }
     }
 ?>
