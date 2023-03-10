@@ -13,8 +13,12 @@
             $this->views->getView($this, "index");
         }
 
+        public function arqueo(){
+            $this->views->getView($this, "arqueo");
+        }
+
         public function listar(){
-            $data = $this->model->getCajas();
+            $data = $this->model->getCajas('cajas');
             for ($i=0; $i < count($data); $i++){
                 if($data[$i]['estado'] == 1){
                     $data[$i]['estado'] = '<span class="badge badge-success" style="background:#5cb85c">Activo</span>';
@@ -92,6 +96,39 @@
                 $msg = array('msg' => '¡Error al restaurar la caja!', 'icono' => 'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+        public function abrirArqueo(){
+            $monto_inicial = $_POST['monto_inicial'];
+            $fecha_apertura = date('Y-m-d');
+            $id_usuario = $_SESSION['id_usuario'];
+            if (empty($monto_inicial) || empty($fecha_apertura)){
+                $msg = array('msg' => '¡El campo es obligatorio!', 'icono' => 'warning');
+            }else{
+                $data = $this->model->registrarArqueo($id_usuario, $monto_inicial, $fecha_apertura);
+                if ($data == 'Ok'){
+                    $msg = array('msg' => '¡Caja abierta con éxito!', 'icono' => 'success');
+                }else if ($data == 'abierta'){
+                    $msg = array('msg' => '¡La caja ya se encuentra abierta!', 'icono' => 'warning');
+                }else{
+                    $msg = array('msg' => '¡Error al abrir la caja!', 'icono' => 'error');
+                }
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+        public function listar_arqueo(){
+            $data = $this->model->getCajas('cierre_caja');
+            for ($i=0; $i < count($data); $i++){
+                if($data[$i]['estado'] == 1){
+                    $data[$i]['estado'] = '<span class="badge badge-success" style="background:#5cb85c">Abierta</span>';
+                }else{
+                    $data[$i]['estado'] = '<span class="badge badge-danger" style="background:#d9534f">Cerrada</span>';
+                }
+            }
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }
     }

@@ -6,8 +6,8 @@
             parent::__construct();
         }
 
-        public function getCajas(){
-            $sql = "SELECT * FROM caja";
+        public function getCajas(string $table){
+            $sql = "SELECT * FROM $table";
             $data = $this->selectAll($sql);
             return $data;
         }
@@ -67,6 +67,27 @@
                            $this->id);
             $data = $this->save($sql, $datos);
             return $data;
+        }
+
+        public function registrarArqueo(int $id_usuario, string $monto_inicial, string $fecha_apertura){
+            $this->monto_inicial = $monto_inicial;
+            $this->fecha_apertura = $fecha_apertura;
+            $verificar = "SELECT * FROM cierre_caja WHERE id_usuario = '$id_usuario' AND estado = 1";
+            $existe = $this->select($verificar);
+            if (empty($existe)){
+                $sql = "INSERT INTO cierre_caja(id_usuario, monto_inicial, fecha_apertura) VALUES(?,?,?)";
+                $datos = array($id_usuario, $monto_inicial, $fecha_apertura);
+                $data = $this->save($sql, $datos);
+                if ($data == 1){
+                    $res = 'Ok';
+                }else{
+                    $res = 'error';
+                }
+            }else{
+                $res = "abierta";
+            }
+            
+            return $res;
         }
     }
 ?>

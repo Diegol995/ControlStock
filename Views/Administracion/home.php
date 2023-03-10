@@ -40,7 +40,7 @@
         <div class="card bg-warning">
             <div class="card-body d-flex text-white">
                 Ventas del día
-                <i class="fas fa-cash-register fa-2x ml-auto"></i>
+                <i class="fa-solid fa-cart-shopping fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a href="<?php echo base_url; ?>Compras/historial_ventas" class="text-white">Ver Detalle</a>

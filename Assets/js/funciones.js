@@ -1,4 +1,5 @@
-let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos, t_h_c, t_h_v;
+let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos, t_h_c, t_h_v,
+t_arquero;
 //Si el contenido del DOM se cargó, se ejecuta la función
 document.addEventListener('DOMContentLoaded', function(){
     $('#cliente').select2();
@@ -704,6 +705,101 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         ]
     } );
+
+    t_arquero = $('#t_arqueo').DataTable( {
+        ajax: {
+            url: base_url + "Cajas/listar_arqueo",
+            dataSrc: ''
+        },
+        columns: [
+            {
+                'data' : 'id'
+            },
+            {
+                'data' : 'monto_inicial'
+            },
+            {
+                'data' : 'monto_final'
+            },
+            {
+                'data' : 'fecha_apertura'
+            },
+            {
+                'data' : 'fecha_cierre'
+            },
+            {
+                'data' : 'total_ventas'
+            },
+            {
+                'data' : 'monto_total'
+            },
+            {
+                'data' : 'estado'
+            }
+        ],
+        //Se pasa el datatable a español y se agregan botones
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [{
+            //Botón para Excel
+            extend: 'excelHtml5',
+            footer: true,
+            title: 'Archivo',
+            filename: 'Export_File',
+
+            //Aquí es donde generas el botón personalizado
+            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+        },
+        //Botón para PDF
+        {
+            extend: 'pdfHtml5',
+            download: 'open',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para copiar
+        {
+            extend: 'copyHtml5',
+            footer: true,
+            title: 'Reporte de usuarios',
+            filename: 'Reporte de usuarios',
+            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            exportOptions: {
+                columns: [0, ':visible']
+            }
+        },
+        //Botón para print
+        {
+            extend: 'print',
+            footer: true,
+            filename: 'Export_File_print',
+            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+        },
+        //Botón para cvs
+        {
+            extend: 'csvHtml5',
+            footer: true,
+            filename: 'Export_File_csv',
+            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+        },
+        {
+            extend: 'colvis',
+            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            postfixButtons: ['colvisRestore']
+        }
+        ]
+    } );
+
+    //FIN DE LA TABLA MEDIDAS
 })
 
 function frmCambiarPass(e){
@@ -873,6 +969,7 @@ function btnCerrar(){
     $('#nueva_categoria').modal('hide');
     $('#nueva_caja').modal('hide');
     $('#nuevo_producto').modal('hide');
+    $('#abrir_caja').modal('hide');
 }
 
 //FIN USUARIOS
@@ -1894,6 +1991,31 @@ function btnAnularV(id){
             }
         }
     })
+}
+
+function arqueoCaja(){
+    $('#abrir_caja').modal('show');
+}
+
+function abrirArqueo(e){
+    e.preventDefault();
+    const monto_inicial = document.getElementById('monto_inicial').value;
+    if (monto_inicial == ''){
+        alertas('Ingrese el monto inicial', 'warning');
+    }else{
+        const frm = document.getElementById('frmAbrirCaja');
+        const url = base_url + "Cajas/abrirArqueo";
+        const http = new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+                const res = JSON.parse(this.responseText);
+                alertas(res.msg, res.icono);
+                $('#abrir_caja').modal('hide');
+            }
+        }
+    }
 }
 
 
