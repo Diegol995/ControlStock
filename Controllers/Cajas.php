@@ -14,7 +14,13 @@
         }
 
         public function arqueo(){
-            $this->views->getView($this, "arqueo");
+            $id_usuario = $_SESSION['id_usuario'];
+            $data = $this->model->getEstadoCaja($id_usuario);
+            $display = 'hola';
+            if (empty($data)){
+                $display = 'd-none';
+            }
+            $this->views->getView($this, "arqueo", $display);
         }
 
         public function listar(){
@@ -125,6 +131,7 @@
                     $total_ventas = $this->model->getTotalVentas($id_usuario);
                     $data = $this->model->actualizarArqueo($monto_final['total'], $fecha_apertura, $total_ventas['total'], $monto_total, $id);
                     if ($data == 'Ok'){
+                        $this->model->actualizarApertura($id_usuario);
                         $msg = array('msg' => '¡Caja cerrada con éxito!', 'icono' => 'success');
                     }else{
                         $msg = array('msg' => '¡Error al cerrar la caja!', 'icono' => 'error');

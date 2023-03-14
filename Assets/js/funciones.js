@@ -1834,7 +1834,6 @@ function procesar(accion){
             http.send();
             http.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
-                    console.log(this.responseText);
                     const res = JSON.parse(this.responseText);
                     if (res.msg == "Ok"){
                         let rutaPDF;
@@ -1847,7 +1846,7 @@ function procesar(accion){
                         window.open(rutaPDF);
                         window.location.reload();
                     }else{
-                        alertas(res, 'error');
+                        alertas(res.msg, res.icono);
                     }
                 }
             }

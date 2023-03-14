@@ -12,6 +12,12 @@
             return $data;
         }
 
+        public function getEstadoCaja(int $id_usuario){
+            $sql = "SELECT * FROM cierre_caja WHERE id_usuario = $id_usuario AND estado = 1";
+            $data = $this->select($sql);
+            return $data;
+        }
+
         public function registrarCaja(string $caja){
             $this->caja = $caja;
             $verificar = "SELECT * FROM caja WHERE caja = '$this->caja'";
@@ -118,6 +124,12 @@
                 $res = 'error';
             }
             return $res;
+        }
+
+        public function actualizarApertura(int $id_usuario){            
+            $sql = "UPDATE ventas SET apertura = ? WHERE id_usuario = ?";
+            $datos = array(0, $id_usuario);
+            $data = $this->save($sql, $datos);
         }
     }
 ?>

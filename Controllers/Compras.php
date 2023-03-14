@@ -165,34 +165,39 @@
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
-
+        
         public function registrarVenta($id_cliente){
             $id_usuario = $_SESSION['id_usuario'];
-            $total = $this->model->calcularCompra('detalle_temp', $id_usuario);
-            $data = $this->model->registrarVenta($id_usuario, $id_cliente, $total['total']);
-            if ($data == 'Ok'){
-                $detalle = $this->model->getDetalle('detalle_temp', $id_usuario);
-                $id_venta = $this->model->getId('ventas');
-                foreach ($detalle as $row){
-                    $id_producto = $row['id_producto'];
-                    $cantidad = $row['cantidad'];
-                    $desc = $row['descuento'];
-                    $precio = $row['precio'];
-                    $sub_total = ($cantidad * $precio) - $desc;
-                    $this->model->registarDetalleVenta($id_venta['id'], $id_producto, $cantidad, $desc,$precio, $sub_total);
-                    //Se actualiza el stock de productos
-                    $stock_actual = $this->model->getProductos($id_producto);
-                    $stock = $stock_actual['cantidad'] - $cantidad;
-                    $this->model->actualizarStock($stock, $id_producto);
-                }
-                //Se vacía la tabla detalle
-                $vaciar = $this->model->vaciarDetalle('detalle_temp', $id_usuario);
-                if ($vaciar == "Ok")
-                {
-                    $msg = array('msg' => 'Ok', 'id_venta' => $id_venta['id']);
-                }
+            $verificar = $this->model->verificarCaja($id_usuario);
+            if (empty($verificar)){
+                $msg = array('msg' => '¡La caja se encuentra cerrada!', 'icono' => 'warning');
             }else{
-                $msg = 'Error al generar la venta.';
+                $total = $this->model->calcularCompra('detalle_temp', $id_usuario);
+                $data = $this->model->registrarVenta($id_usuario, $id_cliente, $total['total']);
+                if ($data == 'Ok'){
+                    $detalle = $this->model->getDetalle('detalle_temp', $id_usuario);
+                    $id_venta = $this->model->getId('ventas');
+                    foreach ($detalle as $row){
+                        $id_producto = $row['id_producto'];
+                        $cantidad = $row['cantidad'];
+                        $desc = $row['descuento'];
+                        $precio = $row['precio'];
+                        $sub_total = ($cantidad * $precio) - $desc;
+                        $this->model->registarDetalleVenta($id_venta['id'], $id_producto, $cantidad, $desc,$precio, $sub_total);
+                        //Se actualiza el stock de productos
+                        $stock_actual = $this->model->getProductos($id_producto);
+                        $stock = $stock_actual['cantidad'] - $cantidad;
+                        $this->model->actualizarStock($stock, $id_producto);
+                    }
+                    //Se vacía la tabla detalle
+                    $vaciar = $this->model->vaciarDetalle('detalle_temp', $id_usuario);
+                    if ($vaciar == "Ok")
+                    {
+                        $msg = array('msg' => 'Ok', 'id_venta' => $id_venta['id']);
+                    }
+                }else{
+                    $msg = array('msg' => '¡Error al generar la venta!', 'icono' => 'error');
+                }
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

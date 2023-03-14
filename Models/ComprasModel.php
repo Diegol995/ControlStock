@@ -245,5 +245,11 @@
             }
             return $res;
         }
+
+        public function verificarCaja(int $id_usuario){
+            $sql = "SELECT * FROM cierre_caja WHERE id_usuario = $id_usuario AND estado = 1";
+            $data = $this->select($sql);
+            return $data;
+        }
     }
 ?>
