@@ -3,7 +3,7 @@
     <li class="breadcrumb-item active">Arqueo de Caja</li>
 </ol>
 <button class="btn btn-primary mb-2" type="button" onclick="arqueoCaja();" title="Nueva Caja"><i class="fas fa-plus"></i></button>
-<button class="btn btn-warning mb-2 <?php echo $data; ?>" type="button" onclick="cerrarCaja();" title="Cerrar Caja">Cerrar caja</button>
+<button class="btn btn-warning mb-2 <?php echo $data; ?>" type="button" onclick="cerrarCaja();" id="btnCerrarCaja" title="Cerrar Caja">Cerrar caja</button>
 <table class="table table-light" id="t_arqueo">
     <thead class="thead-dark">
         <tr>
