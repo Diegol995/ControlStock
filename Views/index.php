@@ -19,7 +19,7 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header text-center">
                                         <h3 class="font-weight-light my-4">Login</h3>
-                                        <img src="<?php echo base_url;?>Assets/img/logo.jpeg" class="img-fluid rounded" alt="logo" width="150">
+                                        <img src="<?php echo base_url;?>Assets/img/logo.png" class="img-fluid rounded" alt="logo" width="150">
                                     </div>
                                     <div class="card-body">
                                         <form id="frmLogin">

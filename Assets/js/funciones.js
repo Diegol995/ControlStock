@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -72,18 +72,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -161,18 +161,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -247,18 +247,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -330,18 +330,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]
@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -413,18 +413,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]
@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -487,7 +487,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -498,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -508,18 +508,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]
@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -587,7 +587,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -597,18 +597,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]
@@ -659,7 +659,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -668,7 +668,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -679,7 +679,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -689,18 +689,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]
@@ -754,7 +754,7 @@ document.addEventListener('DOMContentLoaded', function(){
             filename: 'Export_File',
 
             //Aquí es donde generas el botón personalizado
-            text: '<span class="badge badge-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
+            text: '<span class="badge bg-success" title="Exportar Excel"><i class="fas fa-file-excel"></i></span>'
         },
         //Botón para PDF
         {
@@ -763,7 +763,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
+            text: '<span class="badge  bg-danger" title="Exportar PDF"><i class="fas fa-file-pdf"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -774,7 +774,7 @@ document.addEventListener('DOMContentLoaded', function(){
             footer: true,
             title: 'Reporte de usuarios',
             filename: 'Reporte de usuarios',
-            text: '<span class="badge  badge-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
+            text: '<span class="badge  bg-primary" title="Copiar"><i class="fas fa-copy"></i></span>',
             exportOptions: {
                 columns: [0, ':visible']
             }
@@ -784,18 +784,18 @@ document.addEventListener('DOMContentLoaded', function(){
             extend: 'print',
             footer: true,
             filename: 'Export_File_print',
-            text: '<span class="badge badge-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
+            text: '<span class="badge bg-light" title="Imprimir"><i class="fas fa-print text-dark"></i></span>'
         },
         //Botón para cvs
         {
             extend: 'csvHtml5',
             footer: true,
             filename: 'Export_File_csv',
-            text: '<span class="badge  badge-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
+            text: '<span class="badge  bg-success" title="Exportar CSV"><i class="fas fa-file-csv"></i></span>'
         },
         {
             extend: 'colvis',
-            text: '<span class="badge  badge-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
+            text: '<span class="badge  bg-info" title="Visibilidad"><i class="fas fa-columns"></i></span>',
             postfixButtons: ['colvisRestore']
         }
         ]

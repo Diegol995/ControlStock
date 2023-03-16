@@ -1,73 +1,71 @@
 <?php include "Views/Templates/header.php";?>
 <div class="row">
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-primary">
-            <div class="card-body d-flex text-white">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">
+                <i class="fas fa-user fa-2x"></i>
                 Usuarios
-                <i class="fas fa-user fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="<?php echo base_url; ?>Usuarios" class="text-white">Ver Detalle</a>
-                <span class="text-white"><?php echo $data['usuarios']['total'] ?></span>
+                <a class="small text-white stretched-link" href="<?php echo base_url; ?>Usuarios">Ver Detalles</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-success">
-            <div class="card-body d-flex text-white">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-body">
+                <i class="fas fa-user fa-2x"></i>
                 Clientes
-                <i class="fas fa-user fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="<?php echo base_url; ?>Clientes" class="text-white">Ver Detalle</a>
-                <span class="text-white"><?php echo $data['clientes']['total'] ?></span>
+                <a class="small text-white stretched-link" href="<?php echo base_url;?>Clientes">Ver Detalles</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-danger">
-            <div class="card-body d-flex text-white">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body">
+                <i class="fab fa-product-hunt fa-2x"></i>
                 Productos
-                <i class="fab fa-product-hunt fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="<?php echo base_url; ?>Productos" class="text-white">Ver Detalle</a>
-                <span class="text-white"><?php echo $data['productos']['total'] ?></span>
+                <a class="small text-white stretched-link" href="<?php echo base_url;?>Productos">Ver Detalles</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-warning">
-            <div class="card-body d-flex text-white">
-                Ventas del día
-                <i class="fa-solid fa-cart-shopping fa-2x ml-auto"></i>
+        <div class="card bg-danger text-white mb-4">
+            <div class="card-body">
+                <i class="fas fa-cart-shopping fa-2x"></i>
+                Ventas del Día
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="<?php echo base_url; ?>Compras/historial_ventas" class="text-white">Ver Detalle</a>
-                <span class="text-white"><?php echo $data['ventas']['total'] ?></span>
+                <a class="small text-white stretched-link" href="<?php echo base_url;?>Compras/historial_ventas">Ver Detalles</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
 </div>
-<div class="row mt-2">
+<div class="row">
     <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header bg-dark text-white">
-                Productos con Stock Mínimo
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-area me-1"></i>
+                Area Chart Example
             </div>
-            <div class="card-body">
-                <canvas id="stockMinimo" width="400" height="400"></canvas>
-            </div>
+            <div class="card-body"><canvas id="stockMinimo" width="100%" height="40"></canvas></div>
         </div>
     </div>
     <div class="col-xl-6">
-        <div class="card">
-            <div class="card-header bg-dark text-white">
-                Productos más Vendidos
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Bar Chart Example
             </div>
-            <div class="card-body">
-            <canvas id="ProductosVendidos" width="400" height="400"></canvas>
-            </div>
+            <div class="card-body"><canvas id="ProductosVendidos" width="100%" height="40"></canvas></div>
         </div>
     </div>
 </div>

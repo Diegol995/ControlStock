@@ -8,7 +8,7 @@
         <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>Nombre Corto</th>
+            <th>Abreviación</th>
             <th>Estado</th>
             <th></th>
         </tr>
