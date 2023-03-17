@@ -1,7 +1,11 @@
 let tblUsuarios, tblClientes, tblMedidas, tblCategorias, tblCajas, tblProductos, t_h_c, t_h_v,
-t_arqueo;
+t_arqueo, myModal;
 //Si el contenido del DOM se cargó, se ejecuta la función
 document.addEventListener('DOMContentLoaded', function(){
+    if (document.getElementById('my_modal'))
+    {
+        myModal = new bootstrap.Modal(document.getElementById('my_modal'));
+    }
     $('#cliente').select2();
     //Se accede al tblUsuarios de la vista Usuarios/index.php
     tblUsuarios = $('#tblUsuarios').DataTable( {
@@ -836,11 +840,11 @@ function frmCambiarPass(e){
 function frmUsuario(){
     //Se resetea el formulario para que no queden los campos con datos de la última edición
     document.getElementById("frmUsuario").reset();
-    document.getElementById("title").innerHTML = "Nuevo Usuario";
-    document.getElementById("btnAccion").innerHTML = "Registrar";
+    document.getElementById("title").textContent = "Nuevo Usuario";
+    document.getElementById("btnAccion").textContent = "Registrar";
     document.getElementById("claves").classList.remove("d-none");
     //Se accede al Modal de registro de usuario y se hace visible con "show"
-    $("#nuevo_usuario").modal("show");
+    myModal.show();
     //Se limpia el input 'id' para no tener conflictos con registrar después de editar
     document.getElementById("id").value = "";
 }
@@ -849,8 +853,8 @@ function registrarUser(e){
     e.preventDefault();
     const usuario = document.getElementById("usuario");
     const nombre = document.getElementById("nombre");
-    const clave = document.getElementById("clave");
-    const confirmar = document.getElementById("confirmar");
+    //const clave = document.getElementById("clave");
+    //const confirmar = document.getElementById("confirmar");
     const caja = document.getElementById("caja");
     if (usuario.value == "" || nombre.value == "" || caja.value == "")
     {
@@ -875,7 +879,7 @@ function registrarUser(e){
                     //Se resetea el formulario para limpiar sus campos
                     frm.reset();
                     //Se oculta
-                    $('#nuevo_usuario').modal('hide');
+                    myModal.hide();
                     //Se recarga el datatable para mostrar los datos ingresados/modificados
                     //sin recargar la página
                     tblUsuarios.ajax.reload();
@@ -887,8 +891,8 @@ function registrarUser(e){
 
 function btnEditarUser(id){
     //Con innerHTML se puede cambiar el valor de la etiqueta html
-    document.getElementById("title").innerHTML = "Actualizar Usuario";
-    document.getElementById("btnAccion").innerHTML = "Modificar";
+    document.getElementById("title").textContent = "Actualizar Usuario";
+    document.getElementById("btnAccion").textContent = "Modificar";
     //Se llama al método editar y se le pasa como parámetro el id para que haga la consulta
     //con el mismo
     const url = base_url + "Usuarios/editar/"+id;
@@ -906,7 +910,7 @@ function btnEditarUser(id){
             document.getElementById("caja").value = res.id_caja;
             //Se ocultan los inputs de las contraseñas
             document.getElementById("claves").classList.add("d-none");
-            $("#nuevo_usuario").modal("show");
+            myModal.show();
         }
     }
 }
@@ -1094,9 +1098,9 @@ function btnRestaurarCli(id){
 
 function frmMedidas(){
     document.getElementById("frmMedida").reset();
-    document.getElementById("title").innerHTML = "Nueva Medida";
-    document.getElementById("btnAccion").innerHTML = "Registrar";
-    $("#nueva_medida").modal("show");
+    document.getElementById("title").textContent = "Nueva Medida";
+    document.getElementById("btnAccion").textContent = "Registrar";
+    myModal.show();
     document.getElementById("id").value = "";
 }
 
@@ -1123,7 +1127,7 @@ function registrarMed(e){
                 else{
                     alertas(res.msg, res.icono);
                     frm.reset();
-                    $('#nueva_medida').modal('hide');
+                    myModal.hide();
                     tblMedidas.ajax.reload();
                 }
             }
@@ -1132,8 +1136,8 @@ function registrarMed(e){
 }
 
 function btnEditarMed(id){
-    document.getElementById("title").innerHTML = "Actualizar Medida";
-    document.getElementById("btnAccion").innerHTML = "Modificar";
+    document.getElementById("title").textContent = "Actualizar Medida";
+    document.getElementById("btnAccion").textContent = "Modificar";
     const url = base_url + "Medidas/editar/"+id;
     const http = new XMLHttpRequest();
     http.open("GET", url, true);
@@ -1144,7 +1148,7 @@ function btnEditarMed(id){
             document.getElementById("id").value = res.id;
             document.getElementById("nombre").value = res.nombre;
             document.getElementById("nombre_corto").value = res.nombre_corto;
-            $("#nueva_medida").modal("show");
+            myModal.show();
         }
     }
 }
@@ -1426,9 +1430,9 @@ function btnRestaurarCaja(id){
 
 function frmProducto(){
     document.getElementById("frmProducto").reset();
-    document.getElementById("title").innerHTML = "Nuevo Producto";
-    document.getElementById("btnAccion").innerHTML = "Registrar";
-    $("#nuevo_producto").modal("show");
+    document.getElementById("title").textContent = "Nuevo Producto";
+    document.getElementById("btnAccion").textContent = "Registrar";
+    myModal.show();
     document.getElementById("id").value = "";
     deleteImg();
 }
@@ -1458,7 +1462,7 @@ function registrarProd(e){
                 else{
                     alertas(res.msg, res.icono);
                     frm.reset();
-                    $('#nuevo_producto').modal('hide');
+                    myModal.hide();
                     tblProductos.ajax.reload();
                 }
             }
@@ -1467,8 +1471,8 @@ function registrarProd(e){
 }
 
 function btnEditarProd(id){
-    document.getElementById("title").innerHTML = "Actualizar Producto";
-    document.getElementById("btnAccion").innerHTML = "Modificar";
+    document.getElementById("title").textContent = "Actualizar Producto";
+    document.getElementById("btnAccion").textContent = "Modificar";
     const url = base_url + "Productos/editar/"+id;
     const http = new XMLHttpRequest();
     http.open("GET", url, true);
@@ -1487,7 +1491,7 @@ function btnEditarProd(id){
             document.getElementById("img-icon").classList.add("d-none");
             document.getElementById("icon-cerrar").innerHTML = `<button class="btn btn-danger" onclick="deleteImg();"><i class="fas fa-times"></i></button>`;
             document.getElementById("img_actual").value = res.imagen;
-            $("#nuevo_producto").modal("show");
+            myModal.show();
         }
     }
 }
@@ -1560,7 +1564,7 @@ function preview(e){
 }
 
 function deleteImg(){
-    document.getElementById("icon-cerrar").innerHTML = '';
+    document.getElementById("icon-cerrar").textContent = '';
     document.getElementById("img-icon").classList.remove("d-none");
     document.getElementById("img-preview").src = '';
     document.getElementById("imagen").value = '';

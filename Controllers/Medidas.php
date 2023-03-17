@@ -17,13 +17,13 @@
             $data = $this->model->getMedidas();
             for ($i=0; $i < count($data); $i++){
                 if($data[$i]['estado'] == 1){
-                    $data[$i]['estado'] = '<span class="badge badge-success" style="background:#5cb85c">Activo</span>';
+                    $data[$i]['estado'] = '<span class="badge bg-success" style="background:#5cb85c">Activo</span>';
                     $data[$i]['acciones'] = '<div>
                     <button class="btn btn-primary" title="Editar" type="button" onclick="btnEditarMed('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
                     <button class="btn btn-danger" title="Eliminar" type="button" onclick="btnEliminarMed('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
                     </div>';
                 }else{
-                    $data[$i]['estado'] = '<span class="badge badge-danger" style="background:#d9534f">Inactivo</span>';
+                    $data[$i]['estado'] = '<span class="badge bg-danger" style="background:#d9534f">Inactivo</span>';
                     $data[$i]['acciones'] = '<div>
                     <button class="btn btn-success" title="Restaurar" type="button" onclick="btnRestaurarMed('.$data[$i]['id'].');"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
                     </div>';

@@ -21,13 +21,13 @@
                 //En src se le pasa la ruta de donde se encuentra el archivo/imagen concatenado con el nombre que tiene en la DB
                 $data[$i]['imagen'] = '<img class="img-thumbnail" src="' . base_url . "Assets/img/" . $data[$i]['imagen'] . '" width="100">';
                 if($data[$i]['estado'] == 1){
-                    $data[$i]['estado'] = '<span class="badge badge-success" style="background:#5cb85c">Activo</span>';
+                    $data[$i]['estado'] = '<span class="badge bg-success" style="background:#5cb85c">Activo</span>';
                     $data[$i]['acciones'] = '<div>
                     <button class="btn btn-primary" title="Editar" type="button" onclick="btnEditarProd('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
                     <button class="btn btn-danger" title="Eliminar" type="button" onclick="btnEliminarProd('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
                     </div>';
                 }else{
-                    $data[$i]['estado'] = '<span class="badge badge-danger" style="background:#d9534f">Inactivo</span>';
+                    $data[$i]['estado'] = '<span class="badge bg-danger" style="background:#d9534f">Inactivo</span>';
                     $data[$i]['acciones'] = '<div>
                     <button class="btn btn-success" title="Restaurar" type="button" onclick="btnRestaurarProd('.$data[$i]['id'].');"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
                     </div>';

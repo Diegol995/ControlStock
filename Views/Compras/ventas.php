@@ -7,34 +7,34 @@
         <form id="frmVenta">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="codigo"><i class="fas fa-barcode"></i> Código de Barras</label>
+                    <div class="form-floating mb-3">
                         <input type="hidden" id="id" name="id">
                         <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras" onkeyup="buscarCodigoVenta(event);">
+                        <label for="codigo"><i class="fas fa-barcode"></i> Código de Barras</label>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label for="nombre">Descripción</label>
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
                         <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Descripción del Producto" disabled>
+                        <label for="nombre">Descripción</label>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="form-group">
+                <div class="col-md-1">
+                    <div class="form-floating mb-3">
+                        <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularPrecioVenta(event);" disabled>
                         <label for="cantidad">Cant</label>
-                    <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularPrecioVenta(event);" disabled>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="precio">Precio</label>
+                    <div class="form-floating mb-3">
                         <input id="precio" class="form-control" type="text" name="precio" placeholder="Precio Venta" disabled>
+                        <label for="precio">Precio</label>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="sub_total">Sub Total</label>
+                    <div class="form-floating mb-3">
                         <input id="sub_total" class="form-control" type="text" name="sub_total" placeholder="Sub Total" disabled>
+                        <label for="sub_total">Sub Total</label>
                     </div>
                 </div>
             </div>  
@@ -59,19 +59,19 @@
 </table>
 <div class="row">
     <div class="col-md-4">
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="cliente">Seleccionar Cliente</label>
             <select id="cliente" class="form-control" name="cliente">
                 <?php foreach ($data as $row) {?>
-                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
                 <?php } ?>
             </select>
         </div>
     </div>
     <div class="col-md-4 ml-auto">
-        <div class="form-group">
-            <label for="total" class="font-weight-bold">Total</label>
+        <div class="form-floating mb-3">
             <input id="total" class="form-control" type="text" name="total" placeholder="Total" disabled>
+            <label for="total" class="font-weight-bold">Total</label>
             <button class="btn btn-primary mt-2 btn-block" type="button" onclick="procesar(0)">Generar Venta</button>
         </div>
     </div>

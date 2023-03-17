@@ -26,7 +26,7 @@
                 //Se agrega el campo 'estado' con la etiqueta <span> como valores en cada iteración
                 //para mostrar si está activo o inactivo
                 if($data[$i]['estado'] == 1){
-                    $data[$i]['estado'] = '<span class="badge badge-success" style="background:#5cb85c">Activo</span>';
+                    $data[$i]['estado'] = '<span class="badge bg-success" style="background:#5cb85c">Activo</span>';
                     //Se agrega el campo 'acciones' con los botones como valores en cada iteración.
                     //Y en la accion de los botones se llaman a las funciones pasándole como parámetro
                     //el id del usuario en ese momento de iteración
@@ -35,7 +35,7 @@
                     <button class="btn btn-danger" title="Eliminar" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
                     </div>';
                 }else{
-                    $data[$i]['estado'] = '<span class="badge badge-danger" style="background:#d9534f">Inactivo</span>';
+                    $data[$i]['estado'] = '<span class="badge bg-danger" style="background:#d9534f">Inactivo</span>';
                     $data[$i]['acciones'] = '<div>
                     <button class="btn btn-success" title="Restaurar" type="button" onclick="btnRestaurarUser('.$data[$i]['id'].');"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
                     </div>';

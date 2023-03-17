@@ -21,63 +21,61 @@
         </tbody>
     </table>
 </div>
-<div id="nuevo_producto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="my_modal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="title">Nuevo Producto</h5>
-                <button class="close bg-primary border border-primary h4" data-dismiss="modal" aria-label="Close" id="btnCerrar" onclick="btnCerrar();">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header">
+                <h5 class="modal-title" id="title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post" id="frmProducto">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group m-2">
-                                <label for="codigo">Código de Barras</label>
+                            <div class="form-floating mb-3">
                                 <input type="hidden" id="id" name="id">
                                 <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de Barras">
+                                <label for="codigo">Código de Barras</label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group m-2">
-                                <label for="nombre">Descripción</label>
+                            <div class="form-floating mb-3">
                                 <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre del Producto">
+                                <label for="nombre">Descripción</label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group m-2">
-                                <label for="precio_compra">Precio Compra</label>
+                            <div class="form-floating mb-3">
                                 <input id="precio_compra" class="form-control" type="text" name="precio_compra" placeholder="Precio Compras">
+                                <label for="precio_compra">Precio Compra</label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group m-2">
-                                <label for="precio_venta">Precio Venta</label>
+                            <div class="form-floating mb-3">
                                 <input id="precio_venta" class="form-control" type="text" name="precio_venta" placeholder="Precio Venta">
+                                <label for="precio_venta">Precio Venta</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group m-2">
-                                <label for="medida">Medida</label>
+                            <div class="form-floating mb-3">
                                 <select id="medida" class="form-control" name="medida">
                                     <?php foreach ($data['medidas'] as $row) {  ?>
                                         <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
                                     <?php } ?>
                                 </select>
+                                <label for="medida">Medida</label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group m-2">
-                                <label for="categoria">Categoría</label>
+                            <div class="form-floating mb-3">
                                 <select id="categoria" class="form-control" name="categoria">
                                     <?php foreach ($data['categorias'] as $row) {  ?>
                                         <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
                                     <?php } ?>
                                 </select>
+                                <label for="categoria">Categoría</label>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -96,7 +94,7 @@
                         </div>
                     </div>
                     <button class="btn btn-primary mt-2" type="button" onclick="registrarProd(event);" id="btnAccion">Registrar</button>
-                    <button class="btn btn-danger mt-2" type="button" data-dismiss="modal" onclick="btnCerrar();">Cancelar</button>
+                    <button class="btn btn-danger mt-2" type="button" data-bs-dismiss="modal" onclick="btnCerrar();">Cancelar</button>
                 </form>
             </div>
         </div>
