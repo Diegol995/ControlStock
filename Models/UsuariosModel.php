@@ -109,5 +109,11 @@
             $data = $this->save($sql, $datos);
             return $data;
         }
+
+        public function getPermisos(){
+            $sql = "SELECT * FROM permisos";
+            $data = $this->selectAll($sql);
+            return $data;
+        }
     }
 ?>

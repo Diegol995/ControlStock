@@ -29,9 +29,9 @@
         {
             $controller->$method($parametro); //Si existe, se llama al method junto con el parametro que posea
         } else {
-            echo "No existe el método";
+            header('Location: '.base_url.'Errors');
         }
     }else {
-        echo "No existe el controlador";
+        header('Location: '.base_url.'Errors');
     }
 ?>

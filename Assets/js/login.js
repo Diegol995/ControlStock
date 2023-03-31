@@ -51,8 +51,8 @@ function frmLogin(e){
                     window.location = base_url + "Administracion/home";
                 }else{
                     //Se muestra el mensaje de alerta al ingresar un usuario/contraseña incorrectos
-                    /*document.getElementById("alerta").classList.remove('d-none');
-                    document.getElementById("alerta").innerHTML = res*/
+                    document.getElementById("alerta").classList.remove('d-none');
+                    document.getElementById("alerta").innerHTML = res
                 }
             }
         }

@@ -31,6 +31,7 @@
                     //Y en la accion de los botones se llaman a las funciones pasándole como parámetro
                     //el id del usuario en ese momento de iteración
                     $data[$i]['acciones'] = '<div>
+                    <a class="btn btn-dark" title="Permisos" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'"><i class="fas fa-key"></i></a>
                     <button class="btn btn-primary" title="Editar" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
                     <button class="btn btn-danger" title="Eliminar" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
                     </div>';
@@ -180,6 +181,14 @@
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
+        }
+
+        public function permisos($id){
+            if (empty($_SESSION['activo'])){
+                header("location: ".base_url);
+            }
+            $data = $this->model->getPermisos();
+            $this->views->getView($this, "permisos", $data);
         }
 
         public function salir(){

@@ -31,6 +31,7 @@
                                                 <input class="form-control" id="clave" type="password" name="clave" placeholder="Contraseña" />
                                                 <label for="clave">Contraseña</label>
                                             </div>
+                                            <div class="alert alert-danger d-none" role="alert" id="alerta"></div>
                                             <button type="button" class="btn btn-primary" onclick="frmLogin(event);">Iniciar Sesión</button>
                                         </form>
                                     </div>
