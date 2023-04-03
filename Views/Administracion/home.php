@@ -8,7 +8,7 @@
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="<?php echo base_url; ?>Usuarios">Ver Detalles</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <span class="text-white"><?php echo $data['usuarios']['total'] ?></span>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="<?php echo base_url;?>Clientes">Ver Detalles</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <span class="text-white"><?php echo $data['clientes']['total'] ?></span>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="<?php echo base_url;?>Productos">Ver Detalles</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <span class="text-white"><?php echo $data['productos']['total'] ?></span>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="<?php echo base_url;?>Compras/historial_ventas">Ver Detalles</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <span class="text-white"><?php echo $data['ventas']['total'] ?></span>
             </div>
         </div>
     </div>

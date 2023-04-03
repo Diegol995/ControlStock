@@ -5,16 +5,20 @@
             Asignar Permisos
         </div>
         <div class="card-body">
-            <form id="formulario">
+            <form id="formulario" onsubmit="registrarPermisos(event);">
                 <div class="row">
-                    <?php foreach($data as $row) {?>
+                    <?php foreach($data['datos'] as $row) {?>
                         <div class="col-md-4 text-center text-capitalize p-2">
                             <label for=""><?php echo $row['permiso']?></label><br>
-                            <input type="checkbox">
+                            <input type="checkbox" name="permisos[]" value="<?php echo $row['id']; ?>" <?php echo isset($data['asignados'][$row['id']]) ? 'checked' : '' ; ?>>
                         </div>
                     <?php } ?>
+                    <input type="hidden" value="<?php echo $data['id_usuario']; ?>" name="id_usuario">
                 </div>
-                <button type="button" class="btn btn-primary">Asignar Permisos</button>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-primary" type="submit">Asignar Permisos</button>
+                    <a class="btn btn-outline-danger" href="<?php echo base_url; ?>Usuarios">Volver</a>
+                </div>
             </form>
         </div>
     </div>

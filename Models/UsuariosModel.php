@@ -115,5 +115,37 @@
             $data = $this->selectAll($sql);
             return $data;
         }
+
+        public function registrarPermisos(int $id_user, int $id_permiso){
+            $sql = "INSERT INTO detalle_permisos (id_usuario, id_permiso) VALUES(?,?)";
+            $datos = array($id_user, $id_permiso);
+            $data = $this->save($sql, $datos);
+            if ($data == 1) {
+                $res = 'Ok';
+            }else
+            {
+                $res = 'error';
+            }
+            return $res;
+        }
+
+        public function eliminarPermisos(int $id_user){
+            $sql = "DELETE FROM detalle_permisos WHERE id_usuario = ?";
+            $datos = array($id_user);
+            $data = $this->save($sql, $datos);
+            if ($data == 1) {
+                $res = 'Ok';
+            }else
+            {
+                $res = 'error';
+            }
+            return $res;
+        }
+
+        public function getDetallePermisos(int $id_user){
+            $sql = "SELECT * FROM detalle_permisos WHERE id_usuario = $id_user";
+            $data = $this->selectAll($sql);
+            return $data;
+        }
     }
 ?>

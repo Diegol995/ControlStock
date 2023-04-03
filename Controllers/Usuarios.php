@@ -187,8 +187,32 @@
             if (empty($_SESSION['activo'])){
                 header("location: ".base_url);
             }
-            $data = $this->model->getPermisos();
+            $data['datos'] = $this->model->getPermisos();
+            $permisos = $this->model->getDetallePermisos($id);
+            $data['asignados'] = array();
+            foreach ($permisos as $permiso) {
+                $data['asignados'][$permiso['id_permiso']] = true;
+            }
+            $data['id_usuario'] = $id;
             $this->views->getView($this, "permisos", $data);
+        }
+
+        public function registrarPermiso(){
+            $id_user = $_POST['id_usuario'];
+            $eliminar = $this->model->eliminarPermisos($id_user);
+            if ($eliminar == 'Ok') {
+                foreach ($_POST['permisos'] as $id_permiso) {
+                    $registrar = $this->model->registrarPermisos($id_user, $id_permiso);
+                    if ($registrar == 'Ok') {
+                        $msg = array('msg' => '¡Permisos registrados con éxito!', 'icono' => 'success');
+                    }else{
+                        $msg = array('msg' => '¡Error al registrar los permisos!', 'icono' => 'error');
+                    }
+                }
+            }else{
+                $msg = array('msg' => '¡Error al eliminar los permisos anteriores!', 'icono' => 'error');
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         }
 
         public function salir(){
