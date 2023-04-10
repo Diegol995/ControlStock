@@ -11,8 +11,17 @@
         }
 
         public function index(){
-            $data = $this->model->getEmpresa();
-            $this->views->getView($this, "index", $data);
+            $id_user = $_SESSION['id_usuario'];
+            //Si $verificar devuelve un array vacío, significa que no tiene permiso de acceder
+            //a esa sección
+            $verificar = $this->model->verificarPermiso($id_user, 'configuracion');
+            if (!empty($verificar)) {
+                $data = $this->model->getEmpresa();
+                $this->views->getView($this, "index", $data);
+            } else {
+                header('Location: '.base_url.'Errors/permisos');
+            }
+            
         }
 
         public function home(){
