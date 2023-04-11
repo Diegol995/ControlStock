@@ -25,16 +25,24 @@
             for ($i=0; $i < count($data); $i++){
                 //Se agrega el campo 'estado' con la etiqueta <span> como valores en cada iteración
                 //para mostrar si está activo o inactivo
-                if($data[$i]['estado'] == 1){
+                if($data[$i]['estado'] == 1){                   
                     $data[$i]['estado'] = '<span class="badge bg-success" style="background:#5cb85c">Activo</span>';
-                    //Se agrega el campo 'acciones' con los botones como valores en cada iteración.
-                    //Y en la accion de los botones se llaman a las funciones pasándole como parámetro
-                    //el id del usuario en ese momento de iteración
-                    $data[$i]['acciones'] = '<div>
-                    <a class="btn btn-dark" title="Permisos" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'"><i class="fas fa-key"></i></a>
-                    <button class="btn btn-primary" title="Editar" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger" title="Eliminar" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
-                    </div>';
+                    //si el id es 1, significa que es el usuario administrador, por lo tanto no se muestran
+                    //las acciones de su perfil
+                    if ($data[$i]['id'] == 1) {
+                        $data[$i]['acciones'] = '<div>
+                        <span class="badge bg-primary">Administrador</span>
+                        </div>';
+                    }else{
+                        //Se agrega el campo 'acciones' con los botones como valores en cada iteración.
+                        //Y en la accion de los botones se llaman a las funciones pasándole como parámetro
+                        //el id del usuario en ese momento de iteración
+                        $data[$i]['acciones'] = '<div>
+                        <a class="btn btn-dark" title="Permisos" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'"><i class="fas fa-key"></i></a>
+                        <button class="btn btn-primary" title="Editar" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger" title="Eliminar" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
+                        </div>';
+                    }
                 }else{
                     $data[$i]['estado'] = '<span class="badge bg-danger" style="background:#d9534f">Inactivo</span>';
                     $data[$i]['acciones'] = '<div>

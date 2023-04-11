@@ -54,7 +54,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-chart-area me-1"></i>
-                Productos más vendidos
+                Productos con stock mínimo
             </div>
             <div class="card-body"><canvas id="stockMinimo" width="100%" height="40"></canvas></div>
         </div>
@@ -63,7 +63,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-chart-bar me-1"></i>
-                Productos con Stock mínimo
+                Productos más vendidos
             </div>
             <div class="card-body"><canvas id="ProductosVendidos" width="100%" height="40"></canvas></div>
         </div>

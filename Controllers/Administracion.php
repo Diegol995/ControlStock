@@ -15,7 +15,7 @@
             //Si $verificar devuelve un array vacío, significa que no tiene permiso de acceder
             //a esa sección
             $verificar = $this->model->verificarPermiso($id_user, 'configuracion');
-            if (!empty($verificar)) {
+            if (!empty($verificar) || $id_user == 1) {
                 $data = $this->model->getEmpresa();
                 $this->views->getView($this, "index", $data);
             } else {
