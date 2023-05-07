@@ -6,12 +6,24 @@
         }
 
         public function index(){
-            $this->views->getView($this, 'index');
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'entradas');
+            if (!empty($verificar) || $id_user == 1) {
+                $this->views->getView($this, "index");
+            } else {
+                header('Location: '.base_url.'Errors/permisos');
+            }       
         }
 
         public function ventas(){
-            $data = $this->model->getClientes();
-            $this->views->getView($this, 'ventas', $data);
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'salidas');
+            if (!empty($verificar) || $id_user == 1) {
+                $data = $this->model->getClientes();
+                $this->views->getView($this, 'ventas', $data);
+            } else {
+                header('Location: '.base_url.'Errors/permisos');
+            }       
         }
 
         public function historial_ventas(){

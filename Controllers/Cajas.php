@@ -10,7 +10,13 @@
         }
 
         public function index(){
-            $this->views->getView($this, "index");
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'cajas');
+            if (!empty($verificar) || $id_user == 1) {
+                $this->views->getView($this, "index");
+            } else {
+                header('Location: '.base_url.'Errors/permisos');
+            }    
         }
 
         public function arqueo(){

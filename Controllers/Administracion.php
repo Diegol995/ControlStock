@@ -13,7 +13,8 @@
         public function index(){
             $id_user = $_SESSION['id_usuario'];
             //Si $verificar devuelve un array vacío, significa que no tiene permiso de acceder
-            //a esa sección
+            //a esa sección y también se valida que si el $id_user es 1, lo deje pasar ya que
+            //es el usuario admin.
             $verificar = $this->model->verificarPermiso($id_user, 'configuracion');
             if (!empty($verificar) || $id_user == 1) {
                 $data = $this->model->getEmpresa();

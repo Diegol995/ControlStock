@@ -12,7 +12,7 @@
         public function index(){
             $id_user = $_SESSION['id_usuario'];
             $verificar = $this->model->verificarPermiso($id_user, 'clientes');
-            if (!empty($verificar)) {
+            if (!empty($verificar) || $id_user == 1) {
                 $this->views->getView($this, "index");
             } else {
                 header('Location: '.base_url.'Errors/permisos');
@@ -40,38 +40,44 @@
         }
 
         public function registrar(){
-            $cuit_cuil = $_POST['cuit_cuil'];
-            $nombre = $_POST['nombre'];
-            $telefono = $_POST['telefono'];
-            $direccion = $_POST['direccion'];
-            $id = $_POST['id'];
-            if ($id == ""){
-                if (empty($cuit_cuil) || empty($nombre) || empty($telefono) || empty($direccion)){
-                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
-                }else{
-                    $data = $this->model->registrarCliente($cuit_cuil,$nombre,$telefono,$direccion);
-                    if ($data == 'Ok'){
-                        $msg = array('msg' => '¡Cliente Registrado!', 'icono' => 'success');
-                    }else if ($data == 'existe'){
-                        $msg = array('msg' => '¡Ya se encuentra registrado un cliente con ese Cuit/Cuil!', 'icono' => 'warning');
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'registrar_clientes');
+            if (!empty($verificar) || $id_user == 1) {         
+                $cuit_cuil = $_POST['cuit_cuil'];
+                $nombre = $_POST['nombre'];
+                $telefono = $_POST['telefono'];
+                $direccion = $_POST['direccion'];
+                $id = $_POST['id'];
+                if ($id == ""){
+                    if (empty($cuit_cuil) || empty($nombre) || empty($telefono) || empty($direccion)){
+                        $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                     }else{
-                        $msg = array('msg' => '¡Error al registrar el cliente!', 'icono' => 'error');
+                        $data = $this->model->registrarCliente($cuit_cuil,$nombre,$telefono,$direccion);
+                        if ($data == 'Ok'){
+                            $msg = array('msg' => '¡Cliente Registrado!', 'icono' => 'success');
+                        }else if ($data == 'existe'){
+                            $msg = array('msg' => '¡Ya se encuentra registrado un cliente con ese Cuit/Cuil!', 'icono' => 'warning');
+                        }else{
+                            $msg = array('msg' => '¡Error al registrar el cliente!', 'icono' => 'error');
+                        }
+                    }
+                }else{
+                    if (empty($cuit_cuil) || empty($nombre) || empty($telefono) || empty($direccion)){
+                        $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
+                    }else{
+                        $data = $this->model->modificarCliente($cuit_cuil,$nombre,$telefono,$direccion,$id);
+                        if ($data == 'modificado'){
+                            $msg = array('msg' => '¡Datos Modificados!', 'icono' => 'success');
+                        }else if ($data == 'existe'){
+                            $msg = array('msg' => '¡Ya se encuentra registrado un cliente con ese Cuit/Cuil!', 'icono' => 'warning');
+                        }else{
+                            $msg = array('msg' => '¡Error al registrar el cliente!', 'icono' => 'error');
+                        }
                     }
                 }
-            }else{
-                if (empty($cuit_cuil) || empty($nombre) || empty($telefono) || empty($direccion)){
-                    $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
-                }else{
-                    $data = $this->model->modificarCliente($cuit_cuil,$nombre,$telefono,$direccion,$id);
-                    if ($data == 'modificado'){
-                        $msg = array('msg' => '¡Datos Modificados!', 'icono' => 'success');
-                    }else if ($data == 'existe'){
-                        $msg = array('msg' => '¡Ya se encuentra registrado un cliente con ese Cuit/Cuil!', 'icono' => 'warning');
-                    }else{
-                        $msg = array('msg' => '¡Error al registrar el cliente!', 'icono' => 'error');
-                    }
-                }
-            }
+            } else {
+                $msg = array('msg' => '¡No tienes permisos para registrar clientes!', 'icono' => 'warning');
+            } 
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
@@ -83,12 +89,18 @@
         }
 
         public function eliminar(int $id){
-            $data = $this->model->accionCli(0, $id);
-            if ($data == 1){
-                $msg = array('msg' => '¡Cliente Eliminado!', 'icono' => 'success');
-            }else{
-                $msg = array('msg' => '¡Error al eliminar el cliente!', 'icono' => 'error');
-            }
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'eliminar_clientes');
+            if (!empty($verificar) || $id_user == 1) {
+                $data = $this->model->accionCli(0, $id);
+                if ($data == 1){
+                    $msg = array('msg' => '¡Cliente Eliminado!', 'icono' => 'success');
+                }else{
+                    $msg = array('msg' => '¡Error al eliminar el cliente!', 'icono' => 'error');
+                }
+            } else {
+                $msg = array('msg' => '¡No tienes permisos para eliminar clientes!', 'icono' => 'warning');
+            }    
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
