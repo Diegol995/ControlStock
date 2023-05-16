@@ -84,27 +84,31 @@
             $id_usuario = $_SESSION['id_usuario'];
             $precio = $datos['precio_venta'];
             $cantidad = $_POST['cantidad'];
-            //Se comprueba que si se registra la compra de otro producto y ese producto ya está
-            //cargado, que no agregue otra fila sino que sume la cantidad al mismo
-            $comprobar = $this->model->consultarDetalle('detalle_temp', $id_producto, $id_usuario);
-            if (empty($comprobar)){
-                $sub_total = $precio * $cantidad;
-                $sub_total_actual = $sub_total;
-                $data = $this->model->registrarDetalle('detalle_temp', $id_producto, $id_usuario, $precio, $cantidad, $sub_total_actual, $sub_total);
-                if ($data == "Ok"){
-                    $msg = array('msg' => 'Ok', 'icono' => 'success');
-                }else{
-                    $msg = array('msg' => '¡Error al ingresar el producto!', 'icono' => 'error');
-                }
-            }else
-            {
-                $total_cantidad = $comprobar['cantidad'] + $cantidad;
-                $sub_total = $total_cantidad * $precio;
-                $data = $this->model->actualizarDetalle('detalle_temp', $precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
-                if ($data == "modificado"){
-                    $msg = array('msg' => 'modificado', 'icono' => 'success');
-                }else{
-                    $msg = array('msg' => '¡Error al modificar el producto!', 'icono' => 'error');
+            if ($datos['cantidad'] < $cantidad) {
+                $msg = array('msg' => '¡No hay stock suficiente!', 'icono' => 'warning');
+            } else {
+                //Se comprueba que si se registra la compra de otro producto y ese producto ya está
+                //cargado, que no agregue otra fila sino que sume la cantidad al mismo
+                $comprobar = $this->model->consultarDetalle('detalle_temp', $id_producto, $id_usuario);
+                if (empty($comprobar)){
+                    $sub_total = $precio * $cantidad;
+                    $sub_total_actual = $sub_total;
+                    $data = $this->model->registrarDetalle('detalle_temp', $id_producto, $id_usuario, $precio, $cantidad, $sub_total_actual, $sub_total);
+                    if ($data == "Ok"){
+                        $msg = array('msg' => 'Ok', 'icono' => 'success');
+                    }else{
+                        $msg = array('msg' => '¡Error al ingresar el producto!', 'icono' => 'error');
+                    }
+                }else
+                {
+                    $total_cantidad = $comprobar['cantidad'] + $cantidad;
+                    $sub_total = $total_cantidad * $precio;
+                    $data = $this->model->actualizarDetalle('detalle_temp', $precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
+                    if ($data == "modificado"){
+                        $msg = array('msg' => 'modificado', 'icono' => 'success');
+                    }else{
+                        $msg = array('msg' => '¡Error al modificar el producto!', 'icono' => 'error');
+                    }
                 }
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);

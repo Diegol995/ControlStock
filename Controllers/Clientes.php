@@ -106,11 +106,17 @@
         }
 
         public function restaurar(int $id){
-            $data = $this->model->accionCli(1, $id);
-            if ($data == 1){
-                $msg = array('msg' => '¡Cliente Restaurado!', 'icono' => 'success');
-            }else{
-                $msg = array('msg' => '¡Error al restaurar el cliente!', 'icono' => 'error');
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'restaurar_clientes');
+            if (!empty($verificar) || $id_user == 1) {
+                $data = $this->model->accionCli(1, $id);
+                if ($data == 1){
+                    $msg = array('msg' => '¡Cliente Restaurado!', 'icono' => 'success');
+                }else{
+                    $msg = array('msg' => '¡Error al restaurar el cliente!', 'icono' => 'error');
+                }
+            }else {
+                $msg = array('msg' => '¡No tienes permisos para restaurar clientes!', 'icono' => 'warning'); 
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

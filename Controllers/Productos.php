@@ -3,15 +3,21 @@
         public function __construct()
         {
             session_start();
-            parent::__construct();
-        }
-        public function index(){
             if (empty($_SESSION['activo'])){
                 header("location: ".base_url);
             }
-            $data['medidas'] = $this->model->getMedidas();
-            $data['categorias'] = $this->model->getCategorias();
-            $this->views->getView($this, "index", $data);
+            parent::__construct();
+        }
+        public function index(){
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'productos');
+            if (!empty($verificar) || $id_user == 1) {
+                $data['medidas'] = $this->model->getMedidas();
+                $data['categorias'] = $this->model->getCategorias();
+                $this->views->getView($this, "index", $data);
+            } else {
+                header('Location: '.base_url.'Errors/permisos');
+            }     
         }
 
         public function listar(){
@@ -38,19 +44,22 @@
         }
 
         public function registrar(){
-            $codigo = $_POST['codigo'];
-            $nombre = $_POST['nombre'];
-            $precio_compra = $_POST['precio_compra'];
-            $precio_venta = $_POST['precio_venta'];
-            $medida = $_POST['medida'];
-            $categoria = $_POST['categoria'];
-            $id = $_POST['id'];
-            //Se guardan los datos del archivo que viene por $_FILES
-            $img = $_FILES['imagen'];
-            $imgName = $img['name'];
-            $tmpName = $img['tmp_name'];
-            $fecha = date('YmdHis');
-            if ($id == ""){
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'registrar_productos');
+            if (!empty($verificar) || $id_user == 1) {
+                $codigo = $_POST['codigo'];
+                $nombre = $_POST['nombre'];
+                $precio_compra = $_POST['precio_compra'];
+                $precio_venta = $_POST['precio_venta'];
+                $medida = $_POST['medida'];
+                $categoria = $_POST['categoria'];
+                $id = $_POST['id'];
+                //Se guardan los datos del archivo que viene por $_FILES
+                $img = $_FILES['imagen'];
+                $imgName = $img['name'];
+                $tmpName = $img['tmp_name'];
+                $fecha = date('YmdHis');
+                if ($id == ""){
                 if (empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta)){
                     $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
@@ -77,7 +86,7 @@
                         $msg = array('msg' => '¡Error al registrar el Producto!', 'icono' => 'error');
                     }
                 }
-            }else{
+                }else{
                 if (empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta)){
                     $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
@@ -111,34 +120,57 @@
                             $msg = array('msg' => '¡Error al registrar el Producto!', 'icono' => 'error');
                         }
                 }
+                }
+            }else {
+                $msg = array('msg' => '¡No tienes permisos para agregar productos!', 'icono' => 'warning'); 
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
 
         public function editar(int $id){
-            $data = $this->model->editarProd($id);
-            echo json_encode($data, JSON_UNESCAPED_UNICODE);
-            die();
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'registrar_productos');
+            if (!empty($verificar) || $id_user == 1) {
+                $data = $this->model->editarProd($id);
+                echo json_encode($data, JSON_UNESCAPED_UNICODE);
+                die();
+            }else {
+                $msg = array('msg' => '¡No tienes permisos para editar productos!', 'icono' => 'warning'); 
+                echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+                die();
+            }
         }
 
         public function eliminar(int $id){
-            $data = $this->model->accionProducto(0, $id);
-            if ($data == 1){
-                $msg = array('msg' => '¡Producto Eliminado!', 'icono' => 'success');
-            }else{
-                $msg = array('msg' => '¡Error al eliminar el producto!', 'icono' => 'error');
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'eliminar_productos');
+            if (!empty($verificar) || $id_user == 1) {
+                $data = $this->model->accionProducto(0, $id);
+                if ($data == 1){
+                    $msg = array('msg' => '¡Producto Eliminado!', 'icono' => 'success');
+                }else{
+                    $msg = array('msg' => '¡Error al eliminar el producto!', 'icono' => 'error');
+                }
+            }else {
+                $msg = array('msg' => '¡No tienes permisos para eliminar productos!', 'icono' => 'warning'); 
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
 
         public function restaurar(int $id){
-            $data = $this->model->accionProducto(1, $id);
-            if ($data == 1){
-                $msg = array('msg' => '¡Producto Restaurado!', 'icono' => 'success');
-            }else{
-                $msg = array('msg' => '¡Error al restaurar el producto!', 'icono' => 'error');
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'restaurar_productos');
+            if (!empty($verificar) || $id_user == 1) {
+                $data = $this->model->accionProducto(1, $id);
+                if ($data == 1){
+                    $msg = array('msg' => '¡Producto Restaurado!', 'icono' => 'success');
+                }else{
+                    $msg = array('msg' => '¡Error al restaurar el producto!', 'icono' => 'error');
+                }
+            }else {
+                $msg = array('msg' => '¡No tienes permisos para restaurar productos!', 'icono' => 'warning'); 
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

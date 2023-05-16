@@ -6,18 +6,24 @@
             parent::__construct();
         }
         public function index(){
-            //Se toma la sesión de la función validar()
-            //Si no existe una sesión activa, se reedirecciona al Login
-            if (empty($_SESSION['activo'])){
-                header("location: ".base_url);
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'usuarios');
+            if (!empty($verificar) || $id_user == 1) {
+                //Se toma la sesión de la función validar()
+                //Si no existe una sesión activa, se reedirecciona al Login
+                if (empty($_SESSION['activo'])){
+                    header("location: ".base_url);
+                }
+                //Se accede llama al método getCajas del modelo Usuarios y se guarda en la variable $data
+                //posteriormente se pasa esa variable en el llamado a getView como 3er parámetro
+                //para que cargue al resultado al cargar la vista
+                $data['cajas'] = $this->model->getCajas();
+                //Esta es la vista a la que se reedirecciona si el usuario y contraseña del login
+                //son correctos
+                $this->views->getView($this, "index", $data);
+            }else{
+                header('Location: '.base_url.'Errors/permisos');
             }
-            //Se accede llama al método getCajas del modelo Usuarios y se guarda en la variable $data
-            //posteriormente se pasa esa variable en el llamado a getView como 3er parámetro
-            //para que cargue al resultado al cargar la vista
-            $data['cajas'] = $this->model->getCajas();
-            //Esta es la vista a la que se reedirecciona si el usuario y contraseña del login
-            //son correctos
-            $this->views->getView($this, "index", $data);
         }
 
         public function listar(){
@@ -89,17 +95,20 @@
         }
 
         public function registrar(){
-            $usuario = $_POST['usuario'];
-            $nombre = $_POST['nombre'];
-            $clave = $_POST['clave'];
-            $confirmar = $_POST['confirmar'];
-            $caja = $_POST['caja'];
-            $id = $_POST['id'];
-            //Se encripta la contraseña
-            $hash = hash("SHA256", $clave);
-            //Si el $id es vacío significa que se está ingresando un usuario nuevo
-            //de lo contrario se está modificando uno ya existente
-            if ($id == ""){
+            $id_user = $_SESSION['id_usuario'];
+            $verificar = $this->model->verificarPermiso($id_user, 'registrar_clientes');
+            if (!empty($verificar) || $id_user == 1) {
+                $usuario = $_POST['usuario'];
+                $nombre = $_POST['nombre'];
+                $clave = $_POST['clave'];
+                $confirmar = $_POST['confirmar'];
+                $caja = $_POST['caja'];
+                $id = $_POST['id'];
+                //Se encripta la contraseña
+                $hash = hash("SHA256", $clave);
+                //Si el $id es vacío significa que se está ingresando un usuario nuevo
+                //de lo contrario se está modificando uno ya existente
+                if ($id == ""){
                 if (empty($usuario) || empty($nombre) || empty($clave) || empty($caja)){
                     $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
@@ -116,7 +125,7 @@
                         }
                     }
                 }
-            }else{
+                }else{
                 if (empty($usuario) || empty($nombre) || empty($caja)){
                     $msg = array('msg' => '¡Todos los campos son obligatorios!', 'icono' => 'warning');
                 }else{
@@ -129,6 +138,9 @@
                         $msg = array('msg' => '¡Error al registrar el usuario!', 'icono' => 'error');
                     }
                 }
+                }
+            }else {
+                $msg = array('msg' => '¡No tienes permisos para registrar usuarios!', 'icono' => 'warning');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
